@@ -1,2 +1,0 @@
-# evane-admin
-tesinitt
