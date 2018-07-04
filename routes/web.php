@@ -22,3 +22,6 @@ Route::get('/yi', function () {
 Route::get('/login', function () {
     return view('user/login');
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

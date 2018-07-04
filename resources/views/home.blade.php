@@ -1,34 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>Page Title</title>
-    <link href="css/app.css" rel="stylesheet">
-</head>
-<body>
-<div class="app">
-<div class="container">
-  <div class="row">
-    <div class="col-sm">
-      One of three columns
-    </div>
-    <div class="col-sm">
-      One of three columns
-    </div>
-    <div class="col-sm">
-      One of three columns
-    </div>
-  </div>
-</div>
+@extends('layouts.app')
 
-<div class="alert alert-primary" role="alert">
-  This is a primary alert—check it out!
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Dashboard</div>
+
+                <div class="panel-body">
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    You are logged in!
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
-<script src="js/app.js"></script>
-<script>
-    let test = $('.alert').html();
-    console.log(test);
-</script>
-</body>
-</html>
+@endsection
