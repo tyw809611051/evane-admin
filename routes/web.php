@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/yi', function () {
@@ -24,4 +24,3 @@ Route::get('/login', function () {
 });
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
