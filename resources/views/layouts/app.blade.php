@@ -15,6 +15,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @show
 </head>
+<style>
+    #app {background-color:#EEEEEE;}
+</style>
 <body>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
