@@ -31,14 +31,6 @@
 
 <!-- CSS Files -->
 <link href="{{ asset('css/material.css') }}" rel="stylesheet" />
-
-
-<!-- CSS Just for demo purpose, don't include it in your project -->
-<!-- <link href="css/demo.css" rel="stylesheet" /> -->
-
-
-
-
     </head>
 
     <body class="">
