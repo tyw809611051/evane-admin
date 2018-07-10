@@ -2,8 +2,8 @@
 <html lang="en">
     <head>
     <meta charset="utf-8" />
-<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-<link rel="icon" type="image/png" href="../assets/img/favicon.png">
+<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('img/icon.jpg') }}">
+<link rel="icon" type="image/jpg" href="{{ asset('img/icon.jpg') }}">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 <title>
@@ -22,7 +22,6 @@
 <meta itemprop="name" content="evane">
 <meta itemprop="description" content="manager">
 
-<!-- <meta itemprop="image" content="https://s3.amazonaws.com/creativetim_bucket/products/51/original/opt_mdp_thumbnail.jpg"> -->
 <!-- Twitter Card data -->
 <!-- Open Graph data -->
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -31,70 +30,47 @@
 
 <!-- CSS Files -->
 <link href="{{ asset('css/material.css') }}" rel="stylesheet" />
-    </head>
 
-    <body class="">
+</head>
+
+  <body class="app">
     
-        <div class="wrapper ">
+    <div class="wrapper ">
           
-            <div class="sidebar" data-color="rose" data-background-color="black" data-image="img/sidebar-1.jpg">
-    <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+      <div class="sidebar" data-color="green" data-background-color="black" data-image="img/sidebar-1.jpg">
 
-        Tip 2: you can also add an image using data-image tag
-    -->
+        <div class="logo">
+          <a href="" class="simple-text logo-mini">
+             
+          </a>
+          <a href="http://www.admin.evane.com/" class="simple-text logo-normal">
+             EVANE后台管理
+          </a>
+        </div>
 
-    <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-mini">
-             CT 
-        </a>
-
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-             Creative Tim 
-        </a></div>
-
-    <div class="sidebar-wrapper">
+        <div class="sidebar-wrapper">
         
-        <div class="user">
+          <div class="user">
             <div class="photo">
                 <img src="img/avatar.jpg" />
             </div>
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapseExample" class="username">
                     <span>
-                       Tania Andrew 
-                      <b class="caret"></b>
+                       静爷 
+                      
                     </span>
                 </a>
-                <div class="collapse" id="collapseExample">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                              <span class="sidebar-mini"> MP </span>
-                              <span class="sidebar-normal"> My Profile </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                              <span class="sidebar-mini"> EP </span>
-                              <span class="sidebar-normal"> Edit Profile </span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                              <span class="sidebar-mini"> S </span>
-                              <span class="sidebar-normal"> Settings </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+
             </div>
         </div>
+
         <ul class="nav">
 
             <li class="nav-item active ">
-                <a class="nav-link" href="../examples/dashboard.html">
+                <a class="nav-link" href="http://www.admin.evane.com/">
                     <i class="material-icons">dashboard</i>
-                    <p> Dashboard </p>
+                    <p> 工作台 </p>
                 </a>
             </li>
             
@@ -105,7 +81,6 @@
                        <b class="caret"></b>
                     </p>
                 </a>
-
                 <div class="collapse" id="pagesExamples">
                     <ul class="nav">
                         <li class="nav-item ">
@@ -153,204 +128,8 @@
                     </ul>
                 </div>
             </li>
-
-            <li class="nav-item ">
-                <a class="nav-link" data-toggle="collapse" href="#componentsExamples">
-                    <i class="material-icons">apps</i>
-                    <p> Components 
-                       <b class="caret"></b>
-                    </p>
-                </a>
-
-                <div class="collapse" id="componentsExamples">
-                    <ul class="nav">
-                      <li class="nav-item ">
-                          <a class="nav-link" data-toggle="collapse" href="#componentsCollapse">
-                            <span class="sidebar-mini"> MLT </span>
-                            <span class="sidebar-normal"> Multi Level Collapse 
-                              <b class="caret"></b>
-                            </span>
-
-                          </a>
-
-                          <div class="collapse" id="componentsCollapse">
-                              <ul class="nav">
-                                  <li class="nav-item ">
-                                      <a class="nav-link" href="#0">
-                                        <span class="sidebar-mini"> E </span>
-                                        <span class="sidebar-normal"> Example </span>
-                                      </a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="../examples/components/buttons.html">
-                              <span class="sidebar-mini"> B </span>
-                              <span class="sidebar-normal"> Buttons </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="../examples/components/grid.html">
-                              <span class="sidebar-mini"> GS </span>
-                              <span class="sidebar-normal"> Grid System </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="../examples/components/panels.html">
-                              <span class="sidebar-mini"> P </span>
-                              <span class="sidebar-normal"> Panels </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="../examples/components/sweet-alert.html">
-                              <span class="sidebar-mini"> SA </span>
-                              <span class="sidebar-normal"> Sweet Alert </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="../examples/components/notifications.html">
-                              <span class="sidebar-mini"> N </span>
-                              <span class="sidebar-normal"> Notifications </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="../examples/components/icons.html">
-                              <span class="sidebar-mini"> I </span>
-                              <span class="sidebar-normal"> Icons </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="../examples/components/typography.html">
-                              <span class="sidebar-mini"> T </span>
-                              <span class="sidebar-normal"> Typography </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="nav-item ">
-                <a class="nav-link" data-toggle="collapse" href="#formsExamples">
-                    <i class="material-icons">content_paste</i>
-                    <p> Forms 
-                       <b class="caret"></b>
-                    </p>
-                </a>
-
-                <div class="collapse" id="formsExamples">
-                    <ul class="nav">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="../examples/forms/regular.html">
-                              <span class="sidebar-mini"> RF </span>
-                              <span class="sidebar-normal"> Regular Forms </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="../examples/forms/extended.html">
-                              <span class="sidebar-mini"> EF </span>
-                              <span class="sidebar-normal"> Extended Forms </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="../examples/forms/validation.html">
-                              <span class="sidebar-mini"> VF </span>
-                              <span class="sidebar-normal"> Validation Forms </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="../examples/forms/wizard.html">
-                              <span class="sidebar-mini"> W </span>
-                              <span class="sidebar-normal"> Wizard </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="nav-item ">
-                <a class="nav-link" data-toggle="collapse" href="#tablesExamples">
-                    <i class="material-icons">grid_on</i>
-                    <p> Tables 
-                       <b class="caret"></b>
-                    </p>
-                </a>
-
-                <div class="collapse" id="tablesExamples">
-                    <ul class="nav">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="../examples/tables/regular.html">
-                                <span class="sidebar-mini"> RT </span>
-                                <span class="sidebar-normal"> Regular Tables </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="../examples/tables/extended.html">
-                              <span class="sidebar-mini"> ET </span>
-                              <span class="sidebar-normal"> Extended Tables </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="../examples/tables/datatables.net.html">
-                              <span class="sidebar-mini"> DT </span>
-                              <span class="sidebar-normal"> DataTables.net </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="nav-item ">
-                <a class="nav-link" data-toggle="collapse" href="#mapsExamples">
-                    <i class="material-icons">place</i>
-                    <p> Maps 
-                       <b class="caret"></b>
-                    </p>
-                </a>
-
-                <div class="collapse" id="mapsExamples">
-                    <ul class="nav">
-                        <li class="nav-item ">
-                            <a class="nav-link" href="../examples/maps/google.html">
-                              <span class="sidebar-mini"> GM </span>
-                              <span class="sidebar-normal"> Google Maps </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="../examples/maps/fullscreen.html">
-                              <span class="sidebar-mini"> FSM </span>
-                              <span class="sidebar-normal"> Full Screen Map </span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a class="nav-link" href="../examples/maps/vector.html">
-                              <span class="sidebar-mini"> VM </span>
-                              <span class="sidebar-normal"> Vector Map </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="nav-item ">
-                <a class="nav-link" href="../examples/widgets.html">
-                    <i class="material-icons">widgets</i>
-                    <p> Widgets </p>
-                </a>
-            </li>
-
-            <li class="nav-item ">
-                <a class="nav-link" href="../examples/charts.html">
-                    <i class="material-icons">timeline</i>
-                    <p> Charts </p>
-                </a>
-            </li>
-
-            
+        
         </ul>
-        
-
-        
     </div>
 </div>
 
@@ -443,24 +222,35 @@
 
                   <div class="content">
                       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="content">
   <div class="container-fluid">
+  <div class="row">
+  	 <div class="col-lg-3 col-sm-6">
+          <div class="card card-stats">
+              <div class="card-body ">
+                  <div class="row">
+                      <div class="col-5">
+                          <div class="icon-big text-center icon-warning">
+                              <i class="nc-icon nc-chart text-warning"></i>
+                          </div>
+                      </div>
+                      <div class="col-7">
+                          <div class="numbers">
+                              <p class="card-category">Number</p>
+                              <h4 class="card-title">150GB</h4>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="card-footer ">
+                  <hr>
+                  <div class="stats">
+                      <i class="fa fa-refresh"></i> Update Now
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
     <div class="row">
       <div class="col-md-12">
         <div class="card ">
@@ -1002,23 +792,7 @@
     </div>
 </div>
 
-        
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 <!--   Core JS Files   -->
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/popper.min.js') }}" type="text/javascript"></script>
