@@ -37,15 +37,7 @@
     </head>
 
   <body class="off-canvas-sidebar">
-      
-      <!-- Extra details for Live View on GitHub Pages -->
-      <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
-      
-
+    
         
         <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white" id="navigation-example">
@@ -59,9 +51,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 	</div>
 </nav>
 <!-- End Navbar -->
-
-        
-
 
 <div class="wrapper wrapper-full-page">
           
