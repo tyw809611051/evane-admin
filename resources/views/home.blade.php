@@ -318,8 +318,8 @@
  </div>
     
 <!--   Core JS Files   -->
-<script src="{{ asset('js/app.js') }}"></script>
-
+<!-- <script src="{{ asset('js/app.js') }}"></script> -->
+<script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/popper.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/bootstrap-material-design.min.js') }}" type="text/javascript"></script>
 
