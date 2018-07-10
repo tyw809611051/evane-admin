@@ -45,7 +45,7 @@
                       <tr>
                         <td>
                           <div class="flag">
-                            <img src="images/us.png" </div>
+                            <img src="img/us.png" </div>
                         </td>
                         <td>USA</td>
                         <td class="text-right">

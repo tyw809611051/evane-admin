@@ -24,6 +24,7 @@
 
 <!-- Twitter Card data -->
 <!-- Open Graph data -->
+@section('stylesheet')
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 <!--     Fonts and icons     -->
@@ -31,7 +32,7 @@
 
 <!-- CSS Files -->
 <link href="{{ asset('css/material.css') }}" rel="stylesheet" />
-
+@show
 </head>
 
 <body class="">
@@ -76,7 +77,6 @@
                 <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
                     <i class="material-icons">image</i>
                     <p> Pages 
-                       <b class="caret"></b>
                     </p>
                 </a>
 
@@ -234,6 +234,7 @@
 </div>
 <!--   Core JS Files   -->
 <!-- <script src="{{ asset('js/app.js') }}"></script> -->
+@section('javascript')
 <script src="{{ asset('js/jquery.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/popper.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/bootstrap-material-design.min.js') }}" type="text/javascript"></script>
@@ -241,7 +242,7 @@
 <script src="{{ asset('js/perfect-scrollbar.jquery.min.js') }}" type="text/javascript"></script>
 
 <script src="{{ asset('js/material-dashboard.min.js') }}" type="text/javascript"></script>
-
+@show
 <script>
 
 </script>
