@@ -41,10 +41,10 @@ class UserController extends Controller
             'exp'  => $exp,
         ];
 
-        // $roles=[];
-        // foreach ($user->roles as $role){
-        //     $roles[]=$role->name;
-        // }
+        $roles=[];
+        foreach ($user->roles as $role){
+            $roles[]=$role->name;
+        }
 
         $apiToken = Crypt::encrypt(json_encode($tokenData));
 
