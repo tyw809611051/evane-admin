@@ -11,23 +11,31 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
-Route::get('/home', function () {
-    return view('home');
-});
+// Route::get('/home', function () {
+//     return view('home');
+// });
 
-Route::get('/reg', function () {
-    return view('register');
-});
+// Route::get('/reg', function () {
+//     return view('register');
+// });
 
-Route::post('/ver',[
-    'uses' => 'UserController@ver'
-]);
+// Route::post('/ver',[
+//     'uses' => 'UserController@ver'
+// ]);
 Route::get('/login', function () {
-    return view('user/login');
+    return view('auth/login');
 });
-Auth::routes();
+
+Route::get('/test','UserController@test');
+// Auth::routes();
+
+Route::post('/verify ','UserController@login');
+
+Route::any('/{path?}',function ($path='/'){
+    return error(404,'服务接口不存在',['path'=>$path]);
+})->where('path','.*');
 

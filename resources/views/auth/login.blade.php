@@ -59,7 +59,7 @@
   <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
   <div class="container">
     <div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
-      <form class="form" method="post" action="/ver">
+      <form class="form" method="post" action="/verify">
         <div class="card card-login card-hidden">
           <div class="card-header card-header-rose text-center">
             <h4 class="card-title">Login</h4>
@@ -85,7 +85,7 @@
                     <i class="material-icons">email</i>
                   </span>
                 </div>
-                <input type="email" name="username" class="form-control" placeholder="Email...">
+                <input type="email" name="email" class="form-control" placeholder="Email...">
                 {{ csrf_field() }}
               </div>
             </span>
