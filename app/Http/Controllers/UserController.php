@@ -6,7 +6,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 
-class HelloController extends Controller
+class UserController extends Controller
 {
-    
+    public function ver(Request $request)
+    {
+        $a = $request->post('username');
+        var_dump($a);
+    }
 }

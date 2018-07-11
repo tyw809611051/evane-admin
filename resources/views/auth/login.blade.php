@@ -59,7 +59,7 @@
   <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
   <div class="container">
     <div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
-      <form class="form" method="" action="">
+      <form class="form" method="post" action="/ver">
         <div class="card card-login card-hidden">
           <div class="card-header card-header-rose text-center">
             <h4 class="card-title">Login</h4>
@@ -77,16 +77,7 @@
           </div>
           <div class="card-body ">
             <p class="card-description text-center">Or Be Classical</p>
-            <span class="bmd-form-group">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="material-icons">face</i>
-                  </span>
-                </div>
-                <input type="text" class="form-control" placeholder="First Name...">
-              </div>
-            </span>
+
             <span class="bmd-form-group">
               <div class="input-group">
                 <div class="input-group-prepend">
@@ -94,7 +85,8 @@
                     <i class="material-icons">email</i>
                   </span>
                 </div>
-                <input type="email" class="form-control" placeholder="Email...">
+                <input type="email" name="username" class="form-control" placeholder="Email...">
+                {{ csrf_field() }}
               </div>
             </span>
             <span class="bmd-form-group">
@@ -104,12 +96,12 @@
                     <i class="material-icons">lock_outline</i>
                   </span>
                 </div>
-                <input type="password" class="form-control" placeholder="Password...">
+                <input type="password" name="password" class="form-control" placeholder="Password...">
               </div>
             </span>
           </div>
           <div class="card-footer justify-content-center">
-            <a href="#pablo" class="btn btn-rose btn-link btn-lg">Lets Go</a>
+            <button href="" class="btn btn-rose btn-link btn-lg">Lets Go</button>
           </div>
         </div>
       </form>

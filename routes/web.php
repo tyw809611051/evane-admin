@@ -15,10 +15,17 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/yi', function () {
+Route::get('/home', function () {
     return view('home');
 });
 
+Route::get('/reg', function () {
+    return view('register');
+});
+
+Route::post('/ver',[
+    'uses' => 'UserController@ver'
+]);
 Route::get('/login', function () {
     return view('user/login');
 });
