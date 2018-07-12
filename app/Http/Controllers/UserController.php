@@ -13,8 +13,9 @@ class UserController extends Controller
 
     public function test()
     {
-        return success('ok');
+        Auth::logout();
     }
+    
     public function login(Request $request)
     {
         $username = $request->post('email');
@@ -28,37 +29,11 @@ class UserController extends Controller
         }
 
         $validData = ['email' => $username, 'password' => $password];
-        $authRes = Auth::attempt($validData);
-
-        $user = Auth::user();
-        if (!$user) {
-            return error(1, '用户不存在或密码不正确');
+        $authRes = Auth::guard('web')->attempt($validData);
+        if (!$authRes)
+        {
+            return redirect('login');
         }
-        
-        $exp = time() + (60 * 60 * 24 * 7);
-        $tokenData = [
-            'uid'  => $user->id,
-            'exp'  => $exp,
-        ];
-
-        $roles=[];
-        foreach ($user->roles as $role){
-            $roles[]=$role->name;
-        }
-
-        $apiToken = Crypt::encrypt(json_encode($tokenData));
-
-        if ($authRes) {
-            // 认证通过...
-            return success([
-                'token'   => $apiToken,
-                'roles'   => $roles,
-                'uid'     => $user->id,
-                'name'    => $user->name,
-                'exp' => $exp
-            ]);
-        }
-
-        return error(1, '密码不正确');
+        return redirect('/');
     }
 }

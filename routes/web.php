@@ -11,9 +11,9 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('home');
-// });
+Route::get('/', function () {
+    return view('home');
+});
 
 // Route::get('/home', function () {
 //     return view('home');
@@ -28,6 +28,13 @@
 // ]);
 Route::get('/login', function () {
     return view('auth/login');
+})->name('login');
+
+Route::group([
+    'prefix' => 'article',
+    'middleware' => 'auth:web'
+],function(){
+    Route::get('add','ArticleController@add');
 });
 
 Route::get('/test','UserController@test');
