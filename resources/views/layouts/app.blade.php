@@ -84,7 +84,7 @@
                 <div class="collapse" id="articleExamples">
                     <ul class="nav">
                         <li class="nav-item ">
-                            <a class="nav-link" href="../examples/pages/pricing.html">
+                            <a class="nav-link" href="{{url('article/add')}}">
                               <span class="sidebar-mini"> 新 </span>
                               <span class="sidebar-normal"> 新的文章 </span>
                             </a>
