@@ -39,16 +39,23 @@
                 <div class="tab-pane active" id="about">
                     <h5 class="info-text"> Let's start with the basic information (with validation)</h5>
                     <div class="row justify-content-center">
-                    <div class="col-sm-4">
-                        <div class="picture-container">
-                        <div class="picture">
-                            <img src="../../assets/img/default-avatar.png" class="picture-src" id="wizardPicturePreview" title="" />
-                            <input type="file" id="wizard-picture">
-                        </div>
-                        <h6 class="description">Choose Picture</h6>
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                            <div class="fileinput-new thumbnail">
+                            <img src="{{ asset('img/image_placeholder.jpg') }}" alt="...">
+                            </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                            <div>
+                            <span class="btn btn-rose btn-round btn-file">
+                                <span class="fileinput-new">Select image</span>
+                                <span class="fileinput-exists">Change</span>
+                                <input type="file" name="..." />
+                            </span>
+                            <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-8 col-md-8 col-lg-8">
                         <div class="input-group form-control-lg">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
@@ -72,19 +79,7 @@
                         </div>
                         </div>
                     </div>
-                    <div class="col-lg-10 mt-3">
-                        <div class="input-group form-control-lg">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">
-                            <i class="material-icons">email</i>
-                            </span>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInput1" class="bmd-label-floating">Email (required)</label>
-                            <input type="email" class="form-control" id="exampleemalil" name="email" required>
-                        </div>
-                        </div>
-                    </div>
+  
                     </div>
                 </div>
                 <div class="tab-pane" id="account">
@@ -196,7 +191,7 @@
 <script src="{{ asset('js/jquery.bootstrap-wizard.js') }}" type="text/javascript"></script>
 
 <script src="{{ asset('js/demo.js') }}" type="text/javascript"></script>
-
+<script src="{{ asset('js/jasny-bootstrap.min.js') }}" type="text/javascript"></script>
 <script>
   $(document).ready(function(){
     // Initialise the wizard
