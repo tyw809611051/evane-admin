@@ -190,7 +190,7 @@
 <script src="{{ asset('js/jquery.validate.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/jquery.bootstrap-wizard.js') }}" type="text/javascript"></script>
 
-<script src="{{ asset('js/demo.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/form-wizard.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/jasny-bootstrap.min.js') }}" type="text/javascript"></script>
 <script>
   $(document).ready(function(){
