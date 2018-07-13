@@ -6,7 +6,7 @@
     <div class="col-md-12 col-12 mr-auto ml-auto">
         <!--      Wizard container        -->
         <div class="wizard-container">
-        <div class="card card-wizard" data-color="rose" id="wizardProfile">
+        <div class="card card-wizard" data-color="green" id="wizardProfile">
             <form action="" method="">
             <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
             <div class="card-header text-center">
@@ -23,11 +23,6 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#account" data-toggle="tab" role="tab">
-                    Account
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="#address" data-toggle="tab" role="tab">
                     Address
                     </a>
@@ -39,6 +34,7 @@
                 <div class="tab-pane active" id="about">
                     <h5 class="info-text"> Let's start with the basic information (with validation)</h5>
                     <div class="row justify-content-center">
+
                     <div class="col-sm-4 col-md-4 col-lg-4">
                         <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                             <div class="fileinput-new thumbnail">
@@ -55,74 +51,60 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-sm-8 col-md-8 col-lg-8">
                         <div class="input-group form-control-lg">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
-                            <i class="material-icons">face</i>
+                            标题
                             </span>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInput1" class="bmd-label-floating">First Name (required)</label>
+                            <label for="exampleInput1" class="bmd-label-floating">标题必填</label>
                             <input type="text" class="form-control" id="exampleInput1" name="firstname" required>
                         </div>
                         </div>
                         <div class="input-group form-control-lg">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
-                            <i class="material-icons">record_voice_over</i>
+                            作者
                             </span>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInput11" class="bmd-label-floating">Second Name</label>
+                            <label for="exampleInput11" class="bmd-label-floating">作者必填</label>
                             <input type="text" class="form-control" id="exampleInput11" name="lastname" required>
+                        </div>
+                        </div>
+                        <div class="input-group form-control-lg">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                            摘要
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInput12" class="bmd-label-floating">默认为文章前54字</label>
+                            <textarea class="form-control" aria-label="With textarea" id="exampleInput12" name="excprt"></textarea>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-10 mt-3">
+                        <div class="input-group form-control-sm">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                            <i class="material-icons">email</i>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInput1" class="bmd-label-floating">Email (required)</label>
+                            <input type="email" class="form-control" id="exampleemalil" name="email" required>
                         </div>
                         </div>
                     </div>
   
-                    </div>
+                  </div>
                 </div>
-                <div class="tab-pane" id="account">
-                    <h5 class="info-text"> What are you doing? (checkboxes) </h5>
-                    <div class="row justify-content-center">
-                    <div class="col-lg-10">
-                        <div class="row">
-                        <div class="col-sm-4">
-                            <div class="choice" data-toggle="wizard-checkbox">
-                            <input type="checkbox" name="jobb" value="Design">
-                            <div class="icon">
-                                <i class="fa fa-pencil"></i>
-                            </div>
-                            <h6>Design</h6>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="choice" data-toggle="wizard-checkbox">
-                            <input type="checkbox" name="jobb" value="Code">
-                            <div class="icon">
-                                <i class="fa fa-terminal"></i>
-                            </div>
-                            <h6>Code</h6>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="choice" data-toggle="wizard-checkbox">
-                            <input type="checkbox" name="jobb" value="Develop">
-                            <div class="icon">
-                                <i class="fa fa-laptop"></i>
-                            </div>
-                            <h6>Develop</h6>
-                            </div>
-                            <select class="selectpicker" data-style="btn btn-primary btn-round" title="Single Select" data-size="7">
-                            <option disabled selected>Choose city</option>
-                            <option value="2">Foobar</option>
-                            <option value="3">Is great</option>
-                            </select>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
+
                 <div class="tab-pane" id="address">
                     <div class="row justify-content-center">
                     <div class="col-sm-12">
