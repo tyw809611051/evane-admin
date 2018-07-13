@@ -86,18 +86,25 @@
                             <textarea class="form-control" aria-label="With textarea" id="exampleInput12" name="excprt"></textarea>
                         </div>
                         </div>
+
+
                     </div>
 
-                    <div class="col-lg-10 mt-3">
-                        <div class="input-group form-control-sm">
+                    <div class="col-lg-10 col-md-4 mt-3">
+                         
+                        <div class="input-group form-control-lg">
                         <div class="input-group-prepend">
                             <span class="input-group-text">
-                            <i class="material-icons">email</i>
+                            标签
+                            <!-- <i class="material-icons">bookmarks</i> -->
                             </span>
+
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInput1" class="bmd-label-floating">Email (required)</label>
-                            <input type="email" class="form-control" id="exampleemalil" name="email" required>
+
+                        <div class="bootstrap-tagsinput">  
+                            
+                            <input type="text" value="" data-role="tagsinput" class="form-control tagsinput" data-color="info" style="display: none;">
+                            <input type="text" placeholder="庆祝yi" class="form-control" size="4" style="position: absolute;left:-1000px;">
                         </div>
                         </div>
                     </div>
@@ -174,6 +181,9 @@
 
 <script src="{{ asset('js/form-wizard.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/jasny-bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/jasny-bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/bootstrap-tagsinput.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/bootstrap-selectpicker.js') }}" type="text/javascript"></script>
 <script>
   $(document).ready(function(){
     // Initialise the wizard
