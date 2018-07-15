@@ -22,6 +22,14 @@ Route::get('/article/index', function () {
     return view('article.index');
 });
 
+Route::get('/feature/index', function () {
+    return view('feature.index');
+});
+
+Route::get('/feature/add', function () {
+    return view('feature.add');
+});
+
 // Route::get('/home', function () {
 //     return view('home');
 // });

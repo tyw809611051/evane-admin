@@ -96,13 +96,13 @@
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="../examples/pages/pricing.html">
+                            <a class="nav-link" href="{{url('category/index')}}">
                               <span class="sidebar-mini"> 分类 </span>
                               <span class="sidebar-normal"> 分类管理 </span>
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="../examples/pages/pricing.html">
+                            <a class="nav-link" href="{{url('feature/index')}}">
                               <span class="sidebar-mini"> 版块 </span>
                               <span class="sidebar-normal"> 版块管理 </span>
                             </a>
