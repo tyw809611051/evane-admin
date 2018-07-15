@@ -22,12 +22,14 @@ Route::get('/article/index', function () {
     return view('article.index');
 });
 
-Route::get('/feature/index', function () {
-    return view('feature.index');
-});
 
-Route::get('/feature/add', function () {
-    return view('feature.add');
+//版块管理
+Route::group([
+	'prefix' => '/feature',
+	],function(){
+	Route::get('index','FeatureController@index');
+	Route::match(['get', 'post'], 'add','FeatureController@add');
+	
 });
 
 // Route::get('/home', function () {
