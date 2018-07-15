@@ -5,7 +5,7 @@
 	<div class="container-fluid">
 	    <div class="row">
 	    	<div class="col-md-12">
-		      <form id="RangeValidation" class="form-horizontal" action="/add" method="">
+		      <form id="RangeValidation" class="form-horizontal" action="" method="post" data-address="add">
 		      	{{ csrf_field() }}
 		        <div class="card ">
 		          <div class="card-header card-header-success card-header-text">
@@ -18,7 +18,7 @@
 		              <label class="col-sm-2 col-form-label">名称</label>
 		              <div class="col-sm-7">
 		                <div class="form-group">
-		                  <input class="form-control" type="text" name="min_length" maxLength="5" required="true" placeholder="请填写版块名称,不超过5个字" />
+		                  <input class="form-control" type="text" name="name" maxLength="5" required="true" placeholder="请填写版块名称,不超过5个字" />
 		                </div>
 		              </div>
 	
@@ -27,7 +27,7 @@
 		              <label class="col-sm-2 col-form-label">描述</label>
 		              <div class="col-sm-7">
 		                <div class="form-group">
-		                  <input class="form-control" type="text" name="max_length" maxLength="20" required="true" placeholder="不超过20个字" />
+		                  <input class="form-control" type="text" name="desc" maxLength="20" required="true" placeholder="不超过20个字" />
 		                </div>
 		              </div>
 		        
@@ -73,5 +73,6 @@
     setFormValidation('#LoginValidation');
     setFormValidation('#RangeValidation');
   });
+  console.log($('#RangeValidation').data('address'));
 </script>
 @stop
