@@ -18,6 +18,10 @@ Route::get('/article/add', function () {
     return view('article.add');
 });
 
+Route::get('/article/index', function () {
+    return view('article.index');
+});
+
 // Route::get('/home', function () {
 //     return view('home');
 // });

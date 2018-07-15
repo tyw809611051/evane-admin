@@ -90,7 +90,7 @@
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="../examples/pages/pricing.html">
+                            <a class="nav-link" href="{{url('article/index')}}">
                               <span class="sidebar-mini"> 文章 </span>
                               <span class="sidebar-normal"> 文章管理 </span>
                             </a>
