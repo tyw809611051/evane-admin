@@ -117,38 +117,9 @@
                     <div class="col-sm-12">
                         <h5 class="info-text"> Are you living in a nice area? </h5>
                     </div>
-                    <div class="col-sm-7">
-                        <div class="form-group">
-                        <label>Street Name</label>
-                        <input type="text" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                        <label>Street No.</label>
-                        <input type="text" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-sm-5">
-                        <div class="form-group">
-                        <label>City</label>
-                        <input type="text" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-sm-5">
-                        <div class="form-group select-wizard">
-                        <label>Country</label>
-                        <select class="selectpicker" data-size="7" data-style="select-with-transition" title="Single Select">
-                            <option value="Afghanistan"> Afghanistan </option>
-                            <option value="Albania"> Albania </option>
-                            <option value="Algeria"> Algeria </option>
-                            <option value="American Samoa"> American Samoa </option>
-                            <option value="Andorra"> Andorra </option>
-                            <option value="Angola"> Angola </option>
-                            <option value="Anguilla"> Anguilla </option>
-                            <option value="Antarctica"> Antarctica </option>
-                        </select>
-                        </div>
+                    <div class="col-sm-12">
+                        
+                        <textarea name="" id="myarticle" cols="30" rows="10"></textarea>
                     </div>
                     </div>
                 </div>
@@ -184,6 +155,8 @@
 <script src="{{ asset('js/jasny-bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/bootstrap-tagsinput.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/bootstrap-selectpicker.js') }}" type="text/javascript"></script>
+
+<script src="{{ asset('js/tinymce/tinymce.min.js') }}" type="text/javascript"></script>
 <script>
   $(document).ready(function(){
     // Initialise the wizard
@@ -191,7 +164,12 @@
     setTimeout(function() {
       $('.card.card-wizard').addClass('active');
     }, 600);
+
+    tinymce.init({
+        selector: '#myarticle'
+    });
   });
+
 </script>
 
 @stop
