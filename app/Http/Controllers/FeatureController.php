@@ -9,7 +9,9 @@ class FeatureController extends Controller
 {
 	public function index(Request $request)
 	{
-		return view('feature.index');
+		$list = Feature::paginate(2);
+// var_dump($list->lastPage());die;
+		return view('feature.index',['lists'=>$list]);
 	}
 
     //
