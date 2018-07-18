@@ -351,10 +351,6 @@
 <script src="{{ asset('js/material-dashboard.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/common.js') }}" type="text/javascript"></script>
 @show
-<script>
-
-</script>
-
 
 </body>
 </html>

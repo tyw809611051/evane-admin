@@ -5,7 +5,7 @@
 	<div class="container-fluid">
 	    <div class="row">
 	    	<div class="col-md-12">
-		      <form id="RangeValidation" class="form-horizontal" action="" method="post" data-address="add">
+		      <form id="feature" class="form-horizontal" action="add" method="post" data-address="add" >
 		      	{{ csrf_field() }}
 		        <div class="card ">
 		          <div class="card-header card-header-success card-header-text">
@@ -15,10 +15,11 @@
 		          </div>
 		          <div class="card-body ">
 		            <div class="row">
-		              <label class="col-sm-2 col-form-label">名称</label>
+		              <label class="col-sm-2 col-form-label" >名称</label>
 		              <div class="col-sm-7">
 		                <div class="form-group">
-		                  <input class="form-control" type="text" name="name" maxLength="5" required="true" placeholder="请填写版块名称,不超过5个字" />
+		                  <input class="form-control" id="feature-name" type="text" name="name" maxLength="5" required="true" placeholder="请填写版块名称,不超过5个字" autocomplete="off" />
+		                  
 		                </div>
 		              </div>
 	
@@ -27,14 +28,14 @@
 		              <label class="col-sm-2 col-form-label">描述</label>
 		              <div class="col-sm-7">
 		                <div class="form-group">
-		                  <input class="form-control" type="text" name="desc" maxLength="20" required="true" placeholder="不超过20个字" />
+		                  <input class="form-control" id="feature-desc" type="text" name="desc"   placeholder="不超过20个字"  autocomplete="off"/>
 		                </div>
 		              </div>
 		        
 		            </div>
 		          </div>
 		          <div class="card-footer ml-auto mr-auto">
-		            <button type="submit" class="btn btn-rose">提交</button>
+		            <button type="submit" class="btn btn-rose" id="content-submit">提交</button>
 		          </div>
 		        </div>
 		      </form>
@@ -49,30 +50,78 @@
 @section('javascript')
 @parent
 <script src="{{ asset('js/jquery.validate.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/sweetalert2.js') }}" type="text/javascript"></script>
 
 <script>
-	  function setFormValidation(id){
-    $(id).validate({
-        highlight: function(element) {
-            $(element).closest('.form-group').removeClass('has-success').addClass('has-danger');
-            $(element).closest('.form-check').removeClass('has-success').addClass('has-danger');
-        },
-        success: function(element) {
-            $(element).closest('.form-group').removeClass('has-danger').addClass('has-success');
-            $(element).closest('.form-check').removeClass('has-danger').addClass('has-success');
-        },
-        errorPlacement : function(error, element) {
-            $(element).append(error);
-        },
-    });
-  }
 
-  $(document).ready(function() {
-    setFormValidation('#RegisterValidation');
-    setFormValidation('#TypeValidation');
-    setFormValidation('#LoginValidation');
-    setFormValidation('#RangeValidation');
-  });
-  console.log($('#RangeValidation').data('address'));
+let name = $('#feature-name').val();
+let desc = $('#feature-desc').val();
+let token = $('input:hidden').val();
+
+let postData = {
+	'name' : name,
+	'desc' : desc,
+	'_token' : token
+};
+$('#feature').validate({
+	focusCleanup:true,
+	rules : {
+		name : 'required',
+		desc : {
+			maxlength : 20
+		}
+	},
+	messages : {
+		name : '名称不能为空',
+		desc : {
+			maxlength : '不能超过20个字符'
+		}
+	},
+	errorPlacement: function(error, element) {
+	// Append error within linked label
+		error.appendTo(element.parent());  
+	},
+	errorElement: "span",
+	errorClass : 'text-danger',
+	success:function(label) {
+
+	},
+	submitHandler: function(form)
+	{
+		let postData = {
+			'name' : $('#feature-name').val(),
+			'desc' : $('#feature-desc').val(),
+			'_token' : $('input:hidden').val()
+		};
+	  	$.post('add', postData, function (data) {
+	  		console.log(data);
+	  		if (data.error_code > 0)
+	  		{
+	  			swal({
+	                title: data.msg,
+	                // text: "I will close in 2 seconds.",
+	                timer: 2000,
+	                showConfirmButton: false
+	            })
+	  		}
+
+	  		if (data.error_code == 0)
+	  		{
+	  			swal({
+	                title: data.msg,
+	                buttonsStyling: false,
+	                confirmButtonClass: "btn btn-success",
+	                type: "success"
+	            }).then(function() {
+	            	window.location.href="index";
+	            })
+	  		}
+	  	});
+	}
+
+});
+  	
+
 </script>
 @stop
+

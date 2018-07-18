@@ -3,6 +3,7 @@ var confirmOrderPage = {
     apiCreatOrder: '/rfq/create_order'
 
 };
+
 $(function(){
-    confirmOrderPage.init();
+    // confirmOrderPage.init();
 });
