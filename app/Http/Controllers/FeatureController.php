@@ -41,6 +41,35 @@ class FeatureController extends Controller
 		}
     }
 
+    public function edit($id,Request $request)
+    {
+    	if ($request->isMethod('post')) 
+    	{
+    		$feature = $request->all();
+    		$list    = [];
+
+    		$list    = [
+    			'name' => $feature['name'],
+    			'desc' => $feature['desc'],
+    			'status' => $feature['status'],
+    			'sort'   => $feature['sort']
+    		];
+    		$rs = Feature::where('id',$id)->update($list);
+
+    		if ($rs === false)
+    		{
+    			return error('55001','更新失败');
+    		}
+    		return success($id,'更新成功');
+    	} else 
+    	{
+    		$data = Feature::where('id',$id)->first();
+
+    		return view('feature.edit',['data'=>$data]);
+    	}
+    
+    }
+
     public function changeStatus(Request $request)
     {
     	$status = $request->get('status');

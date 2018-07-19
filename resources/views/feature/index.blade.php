@@ -18,7 +18,7 @@
             <div class="row">
             	
             	<div class="col-md-10 ml-auto">
-            		<button class="btn btn-success">筛选</button>
+            		<button class="btn btn-info">发布</button>
             	</div>
 
            		 <div class="col-md-2 ml-auto ">
@@ -37,13 +37,14 @@
                   <th>名称</th>
                   <th>描述</th>
                   <th>状态</th>
+                  <th>排序</th>
                   <th class="text-right">创建时间</th>
                   <th class="disabled-sorting text-right">操作</th>
                 </tr>
               </thead>
               <tbody>
               @foreach($lists as $list )
-                <tr>
+                <tr data-id="{{$list['id']}}" data-status="">
                   <td>{{$list['id']}}</td>
                   <td>{{$list['name']}}</td>
                   <td>{{$list['desc']}}</td>
@@ -54,7 +55,7 @@
                         @if ($list['status'] == 1)
                           checked 
                         @endif
-                        onclick="return changeStatus({{$list['id']}},{{$list['status']}});" 
+                        onclick="return changeStatus({{$list['id']}},{{$list['changeStatus']}});" 
                         >
                         <span class="toggle"></span>
                         @if ($list['status'] == 1)
@@ -65,11 +66,12 @@
                       </label>
                     </div>
                   </td>
+                  <td>{{$list['sort']}}</td>
                   <td class="text-right">{{$list['created_at']}}</td>
                   <td class="text-right">
-                    <a href="#" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a>
-                    <a href="#" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
-                    <a href="#" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">close</i></a>
+                    <!-- <a href="#" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a> -->
+                    <a href="{{url('feature/edit',['id'=>$list['id']])}}" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
+                    <a href="{{url('feature/delete',['id'=>$list['id']])}}" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">close</i></a>
                   </td>
                 </tr>
                 @endforeach
@@ -97,6 +99,7 @@
 <script src="{{ asset('js/sweetalert2.js') }}" type="text/javascript"></script>
 
 <script>
+//改变状态
 function changeStatus(id,status) {
   let hint = '';
   hint  = status == 1 ? '禁用' : '启用';

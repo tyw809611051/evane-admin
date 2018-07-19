@@ -5,7 +5,7 @@
 	<div class="container-fluid">
 	    <div class="row">
 	    	<div class="col-md-12">
-		      <form id="feature" class="form-horizontal" action="add" method="post" data-address="add" >
+		      <form id="feature" class="form-horizontal" action="add" method="post" >
 		      	{{ csrf_field() }}
 		        <div class="card ">
 		          <div class="card-header card-header-success card-header-text">
@@ -54,15 +54,6 @@
 
 <script>
 
-let name = $('#feature-name').val();
-let desc = $('#feature-desc').val();
-let token = $('input:hidden').val();
-
-let postData = {
-	'name' : name,
-	'desc' : desc,
-	'_token' : token
-};
 $('#feature').validate({
 	focusCleanup:true,
 	rules : {
