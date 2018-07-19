@@ -9,8 +9,8 @@ class FeatureController extends Controller
 {
 	public function index(Request $request)
 	{
-		$list = Feature::paginate(2);
-// var_dump($list->lastPage());die;
+		$list = Feature::paginate(10);
+
 		return view('feature.index',['lists'=>$list]);
 	}
 
@@ -70,6 +70,17 @@ class FeatureController extends Controller
     
     }
 
+    public function delete($id,Request $request)
+    {
+    	$rs = Feature::where('id',$id)->delete();
+
+    	if ($rs === false)
+    	{
+    		return error('44002','删除失败');
+    	}
+
+    	return success('','删除成功');
+    }
     public function changeStatus(Request $request)
     {
     	$status = $request->get('status');

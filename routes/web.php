@@ -30,6 +30,7 @@ Route::group([
 	Route::get('index','FeatureController@index');
 	Route::match(['get', 'post'], 'add','FeatureController@add');
 	Route::match(['get', 'post'], 'edit/{id}','FeatureController@edit');
+	Route::get('delete/{id}','FeatureController@delete');
 	Route::get('changeStatus','FeatureController@changeStatus');
 });
 

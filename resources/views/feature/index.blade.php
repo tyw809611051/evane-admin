@@ -71,7 +71,7 @@
                   <td class="text-right">
                     <!-- <a href="#" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a> -->
                     <a href="{{url('feature/edit',['id'=>$list['id']])}}" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
-                    <a href="{{url('feature/delete',['id'=>$list['id']])}}" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">close</i></a>
+                    <a href="javascript:false;" class="btn btn-link btn-danger btn-just-icon remove" id="feature-del" data-id="{{$list['id']}}" onclick="del({{$list['id']}});" ><i class="material-icons">close</i></a>
                   </td>
                 </tr>
                 @endforeach
@@ -143,7 +143,45 @@ function changeStatus(id,status) {
       return true;
   }).catch(swal.noop)
   return false;
-}
+};
+function del(id) {
+   swal({
+      title: '确定删除?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonClass: 'btn btn-success',
+      cancelButtonClass: 'btn btn-danger',
+      confirmButtonText: '是的, 删除它!',
+      cancelButtonText: '取消',
+      buttonsStyling: false
+  }).then(function() {
+    let apiUrl = 'delete/'+$('#feature-del').data('id');
+    console.log(apiUrl);
+    $.get(apiUrl, '', function (data) {
+        console.log(data);
+        if (data.error_code > 0)
+        {
+          swal({
+                  title: data.msg,
+                  timer: 2000,
+                  showConfirmButton: false
+              });
+        }
+
+        if (data.error_code == 0)
+        {
+          swal({
+                  title: data.msg,
+                  buttonsStyling: false,
+                  confirmButtonClass: "btn btn-success",
+                  type: "success"
+              }).then(function() {
+                // window.location.href="index";
+              })
+        }
+      });
+  }).catch(swal.noop)
+};
 
 </script>
 
