@@ -41,7 +41,7 @@ class FeatureController extends Controller
 		}
     }
 
-    public changeStatus(Request $request)
+    public function changeStatus(Request $request)
     {
     	$status = $request->get('status');
     	$id     = $request->get('id');
@@ -50,5 +50,13 @@ class FeatureController extends Controller
     	{
     		return error('44001','无ID参数');
     	}
+
+    	$rs = Feature::where('id',$id)->update(['status'=>$status]);
+
+    	if ($rs === false)
+    	{
+    		return error('55001','修改失败');
+    	}
+    	return success($rs,'修改成功');
     }
 }

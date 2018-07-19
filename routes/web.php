@@ -29,7 +29,7 @@ Route::group([
 	],function(){
 	Route::get('index','FeatureController@index');
 	Route::match(['get', 'post'], 'add','FeatureController@add');
-	
+	Route::get('changeStatus','FeatureController@changeStatus');
 });
 
 // Route::get('/home', function () {
