@@ -40,4 +40,15 @@ class FeatureController extends Controller
 			return view('feature.add');
 		}
     }
+
+    public changeStatus(Request $request)
+    {
+    	$status = $request->get('status');
+    	$id     = $request->get('id');
+
+    	if (empty($id))
+    	{
+    		return error('44001','无ID参数');
+    	}
+    }
 }

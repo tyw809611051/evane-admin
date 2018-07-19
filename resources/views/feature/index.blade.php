@@ -29,7 +29,7 @@
             	</div>
             
           </div>
-          <div class="material-datatables">
+                   <div class="material-datatables">
             <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
               <thead>
                 <tr>
@@ -37,26 +37,35 @@
                   <th>名称</th>
                   <th>描述</th>
                   <th>状态</th>
+                  <th class="text-right">创建时间</th>
                   <th class="disabled-sorting text-right">操作</th>
                 </tr>
               </thead>
- <!--              <tfoot>
-                <tr>
-                  <th>Name</th>
-                  <th>Position</th>
-                  <th>Office</th>
-                  <th>Age</th>
-                  <th>Start date</th>
-                  <th class="text-right">Actions</th>
-                </tr>
-              </tfoot> -->
               <tbody>
               @foreach($lists as $list )
                 <tr>
                   <td>{{$list['id']}}</td>
                   <td>{{$list['name']}}</td>
                   <td>{{$list['desc']}}</td>
-                  <td>{{$list['status']}}</td>
+                  <td>
+                    <div class="togglebutton">
+                      <label>
+                        <input type="checkbox" 
+                        @if ($list['status'] == 1)
+                          checked 
+                        @endif
+                        onclick="changeStatus({{$list['status']}})" 
+                        >
+                        <span class="toggle"></span>
+                        @if ($list['status'] == 1)
+                          启用
+                        @else
+                          禁用 
+                        @endif
+                      </label>
+                    </div>
+                  </td>
+                  <td class="text-right">{{$list['created_at']}}</td>
                   <td class="text-right">
                     <a href="#" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a>
                     <a href="#" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
@@ -85,9 +94,30 @@
 
 @section('javascript')
 @parent
-
+<script src="{{ asset('js/sweetalert2.js') }}" type="text/javascript"></script>
 
 <script>
+function changeStatus(status) {
+  let state = '';
+  state = status == 1 ? '禁用' : '启用';
+  swal({
+      title: '确定'+state+'?',
+      showCancelButton: true,
+      confirmButtonClass: 'btn btn-success',
+      cancelButtonClass: 'btn btn-danger',
+      buttonsStyling: false
+  }).then(function(result) {
+      swal({
+          type: 'success',
+          html: 'You entered: <strong>' +
+              $('#input-field').val() +
+              '</strong>',
+          confirmButtonClass: 'btn btn-success',
+          buttonsStyling: false
+
+      })
+  }).catch(swal.noop)
+}
 
 </script>
 
