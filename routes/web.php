@@ -33,7 +33,16 @@ Route::group([
 	Route::get('delete/{id}','FeatureController@delete');
 	Route::get('changeStatus','FeatureController@changeStatus');
 });
-
+//分类管理
+Route::group([
+	'prefix' => '/category',
+	],function(){
+	Route::get('index','CategoryController@index');
+	Route::match(['get', 'post'], 'add','CategoryController@add');
+	Route::match(['get', 'post'], 'edit/{id}','CategoryController@edit');
+	Route::get('delete/{id}','CategoryController@delete');
+	Route::get('changeStatus','CategoryController@changeStatus');
+});
 // Route::get('/home', function () {
 //     return view('home');
 // });
