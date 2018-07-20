@@ -10,7 +10,7 @@
 		        <div class="card ">
 		          <div class="card-header card-header-success card-header-text">
 		            <div class="card-text">
-		              <h4 class="card-title">添加版块</h4>
+		              <h4 class="card-title">添加分类</h4>
 		            </div>
 		          </div>
 		          <div class="card-body ">

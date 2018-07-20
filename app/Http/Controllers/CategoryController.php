@@ -9,6 +9,17 @@ class CategoryController extends Controller
 {
 	public function index(Request $request)
 	{
-		return view('Category.index');
+		return view('category.index');
+	}
+
+	public function add(Request $request)
+	{
+		if ($request->isMethod('post'))
+		{
+
+		} else 
+		{
+			return view('category.add');
+		}
 	}
 }
