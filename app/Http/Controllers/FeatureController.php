@@ -99,4 +99,15 @@ class FeatureController extends Controller
     	}
     	return success($rs,'修改成功');
     }
+
+    public function get(Request $request)
+    {
+        $data['status'] = $request->get('status',0);
+        $list = Feature::when($data['status'],function($query) use($data){
+            return $query->where('status',$data['status']);
+        })
+        ->get();
+
+        return success($list);
+    }
 }

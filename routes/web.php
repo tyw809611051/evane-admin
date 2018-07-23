@@ -32,6 +32,7 @@ Route::group([
 	Route::match(['get', 'post'], 'edit/{id}','FeatureController@edit');
 	Route::get('delete/{id}','FeatureController@delete');
 	Route::get('changeStatus','FeatureController@changeStatus');
+	Route::get('get','FeatureController@get');
 });
 //分类管理
 Route::group([
