@@ -47,17 +47,18 @@ class CategoryController extends Controller
     {
     	if ($request->isMethod('post')) 
     	{
-    		$feature = $request->all();
+    		$category = $request->all();
+    		
     		$list    = [];
 
     		$list    = [
     			'name' 		 => $category['name'],
     			'feature_id' => $category['feature'],
-    			'parent_id'  => $category['parent'],
+    			'parent_id'  => (int)$category['parent'],
     			'sort'   	 => $category['sort'],
     			'status' 	 => $category['status']
     		];
-    		$rs = Feature::where('id',$id)->update($list);
+    		$rs = Category::where('id',$id)->update($list);
 
     		if ($rs === false)
     		{

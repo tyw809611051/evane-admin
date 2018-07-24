@@ -75,6 +75,7 @@
 		              <label class="col-sm-2 col-form-label">父级分类</label>
 		              <div class="col-lg-5 col-md-6 col-sm-3">
 						<select class="selectpicker" name="parent_cate" data-style="btn-success" id="parentCategory">
+						<option value="0">顶级分类</option>
 						@foreach($parentCate as $parent )
 						<option value="{{$parent['id']}}" 
 						@if ($parent['id'] == $data['parent_id'])
@@ -158,7 +159,7 @@ $('#category').validate({
 		let apiUrl  = $('#category').data('id');
 	
 	  	$.post(apiUrl, postData, function (data) {
-	  	
+	  		
 	  		if (data.error_code > 0)
 	  		{
 	  			swal({
