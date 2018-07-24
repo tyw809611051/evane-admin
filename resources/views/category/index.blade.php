@@ -10,7 +10,7 @@
           <div class="card-icon">
             <i class="material-icons">assignment</i>
           </div>
-          <h4 class="card-title">版块</h4>
+          <h4 class="card-title">分类</h4>
         </div>
         <div class="card-body">
           <div class="toolbar">
@@ -55,7 +55,7 @@
                         @if ($list['status'] == 1)
                           checked 
                         @endif
-                        onclick="return changeStatus({{$list['id']}},{{$list['changeStatus']}});" 
+                        onclick="return changeDataStatus({{$list['id']}},{{$list['status']}});" 
                         >
                         <span class="toggle"></span>
                         @if ($list['status'] == 1)
@@ -70,14 +70,14 @@
                   <td class="text-right">{{$list['created_at']}}</td>
                   <td class="text-right">
                     <!-- <a href="#" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a> -->
-                    <a href="{{url('feature/edit',['id'=>$list['id']])}}" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
+                    <a href="{{url('category/edit',['id'=>$list['id']])}}" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
                     <a href="javascript:false;" class="btn btn-link btn-danger btn-just-icon remove" id="feature-del" data-id="{{$list['id']}}" onclick="del({{$list['id']}});" ><i class="material-icons">close</i></a>
                   </td>
                 </tr>
                 @endforeach
               </tbody>
             </table>
-            <!-- {{ $lists->links('layouts.page') }} -->
+            {{ $lists->links('layouts.page') }}
 
           </div>
         </div>
@@ -99,89 +99,6 @@
 <script src="{{ asset('js/sweetalert2.js') }}" type="text/javascript"></script>
 
 <script>
-//改变状态
-// function changeStatus(id,status) {
-//   let hint = '';
-//   hint  = status == 1 ? '禁用' : '启用';
-//   state = status == 1 ? -1 : 1;
-
-//   let postData = {
-//     'id' : id,
-//     'status' : state
-//   };
-//   swal({
-//       title: '确定'+hint+'?',
-//       showCancelButton: true,
-//       confirmButtonClass: 'btn btn-success',
-//       cancelButtonClass: 'btn btn-danger',
-//       buttonsStyling: false
-//   }).then(function(result) {
-//       $.get('changeStatus', postData, function (data) {
-//         console.log(data);
-//         if (data.error_code > 0)
-//         {
-//           swal({
-//                   title: data.msg,
-//                   timer: 2000,
-//                   showConfirmButton: false
-//               });
-//           return false;
-//         }
-
-//         if (data.error_code == 0)
-//         {
-//           swal({
-//                   title: data.msg,
-//                   buttonsStyling: false,
-//                   confirmButtonClass: "btn btn-success",
-//                   type: "success"
-//               }).then(function() {
-//                 window.location.href="index";
-//               })
-//         }
-//       });
-//       return true;
-//   }).catch(swal.noop)
-//   return false;
-// };
-// function del(id) {
-//    swal({
-//       title: '确定删除?',
-//       type: 'warning',
-//       showCancelButton: true,
-//       confirmButtonClass: 'btn btn-success',
-//       cancelButtonClass: 'btn btn-danger',
-//       confirmButtonText: '是的, 删除它!',
-//       cancelButtonText: '取消',
-//       buttonsStyling: false
-//   }).then(function() {
-//     let apiUrl = 'delete/'+$('#feature-del').data('id');
-//     console.log(apiUrl);
-//     $.get(apiUrl, '', function (data) {
-//         console.log(data);
-//         if (data.error_code > 0)
-//         {
-//           swal({
-//                   title: data.msg,
-//                   timer: 2000,
-//                   showConfirmButton: false
-//               });
-//         }
-
-//         if (data.error_code == 0)
-//         {
-//           swal({
-//                   title: data.msg,
-//                   buttonsStyling: false,
-//                   confirmButtonClass: "btn btn-success",
-//                   type: "success"
-//               }).then(function() {
-//                 // window.location.href="index";
-//               })
-//         }
-//       });
-//   }).catch(swal.noop)
-// };
 
 </script>
 
