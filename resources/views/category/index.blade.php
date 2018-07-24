@@ -23,7 +23,7 @@
 
            		 <div class="col-md-2 ml-auto ">
    
-            		<a class="btn btn-success" href="{{url('feature/add')}}">新增</a>
+            		<a class="btn btn-success" href="{{url('category/add')}}">新增</a>
       
             	</div>
             	</div>
@@ -35,7 +35,7 @@
                 <tr>
                   <th>ID</th>
                   <th>名称</th>
-                  <th>描述</th>
+                  <th>父级分类</th>
                   <th>状态</th>
                   <th>排序</th>
                   <th class="text-right">创建时间</th>
@@ -47,7 +47,7 @@
                 <tr data-id="{{$list['id']}}" data-status="">
                   <td>{{$list['id']}}</td>
                   <td>{{$list['name']}}</td>
-                  <td>{{$list['desc']}}</td>
+                  <td>{{$list['parent_id']}}</td>
                   <td>
                     <div class="togglebutton">
                       <label>
@@ -77,7 +77,7 @@
                 @endforeach
               </tbody>
             </table>
-            {{ $lists->links('layouts.page') }}
+            <!-- {{ $lists->links('layouts.page') }} -->
 
           </div>
         </div>
@@ -100,88 +100,88 @@
 
 <script>
 //改变状态
-function changeStatus(id,status) {
-  let hint = '';
-  hint  = status == 1 ? '禁用' : '启用';
-  state = status == 1 ? -1 : 1;
+// function changeStatus(id,status) {
+//   let hint = '';
+//   hint  = status == 1 ? '禁用' : '启用';
+//   state = status == 1 ? -1 : 1;
 
-  let postData = {
-    'id' : id,
-    'status' : state
-  };
-  swal({
-      title: '确定'+hint+'?',
-      showCancelButton: true,
-      confirmButtonClass: 'btn btn-success',
-      cancelButtonClass: 'btn btn-danger',
-      buttonsStyling: false
-  }).then(function(result) {
-      $.get('changeStatus', postData, function (data) {
-        console.log(data);
-        if (data.error_code > 0)
-        {
-          swal({
-                  title: data.msg,
-                  timer: 2000,
-                  showConfirmButton: false
-              });
-          return false;
-        }
+//   let postData = {
+//     'id' : id,
+//     'status' : state
+//   };
+//   swal({
+//       title: '确定'+hint+'?',
+//       showCancelButton: true,
+//       confirmButtonClass: 'btn btn-success',
+//       cancelButtonClass: 'btn btn-danger',
+//       buttonsStyling: false
+//   }).then(function(result) {
+//       $.get('changeStatus', postData, function (data) {
+//         console.log(data);
+//         if (data.error_code > 0)
+//         {
+//           swal({
+//                   title: data.msg,
+//                   timer: 2000,
+//                   showConfirmButton: false
+//               });
+//           return false;
+//         }
 
-        if (data.error_code == 0)
-        {
-          swal({
-                  title: data.msg,
-                  buttonsStyling: false,
-                  confirmButtonClass: "btn btn-success",
-                  type: "success"
-              }).then(function() {
-                window.location.href="index";
-              })
-        }
-      });
-      return true;
-  }).catch(swal.noop)
-  return false;
-};
-function del(id) {
-   swal({
-      title: '确定删除?',
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonClass: 'btn btn-success',
-      cancelButtonClass: 'btn btn-danger',
-      confirmButtonText: '是的, 删除它!',
-      cancelButtonText: '取消',
-      buttonsStyling: false
-  }).then(function() {
-    let apiUrl = 'delete/'+$('#feature-del').data('id');
-    console.log(apiUrl);
-    $.get(apiUrl, '', function (data) {
-        console.log(data);
-        if (data.error_code > 0)
-        {
-          swal({
-                  title: data.msg,
-                  timer: 2000,
-                  showConfirmButton: false
-              });
-        }
+//         if (data.error_code == 0)
+//         {
+//           swal({
+//                   title: data.msg,
+//                   buttonsStyling: false,
+//                   confirmButtonClass: "btn btn-success",
+//                   type: "success"
+//               }).then(function() {
+//                 window.location.href="index";
+//               })
+//         }
+//       });
+//       return true;
+//   }).catch(swal.noop)
+//   return false;
+// };
+// function del(id) {
+//    swal({
+//       title: '确定删除?',
+//       type: 'warning',
+//       showCancelButton: true,
+//       confirmButtonClass: 'btn btn-success',
+//       cancelButtonClass: 'btn btn-danger',
+//       confirmButtonText: '是的, 删除它!',
+//       cancelButtonText: '取消',
+//       buttonsStyling: false
+//   }).then(function() {
+//     let apiUrl = 'delete/'+$('#feature-del').data('id');
+//     console.log(apiUrl);
+//     $.get(apiUrl, '', function (data) {
+//         console.log(data);
+//         if (data.error_code > 0)
+//         {
+//           swal({
+//                   title: data.msg,
+//                   timer: 2000,
+//                   showConfirmButton: false
+//               });
+//         }
 
-        if (data.error_code == 0)
-        {
-          swal({
-                  title: data.msg,
-                  buttonsStyling: false,
-                  confirmButtonClass: "btn btn-success",
-                  type: "success"
-              }).then(function() {
-                // window.location.href="index";
-              })
-        }
-      });
-  }).catch(swal.noop)
-};
+//         if (data.error_code == 0)
+//         {
+//           swal({
+//                   title: data.msg,
+//                   buttonsStyling: false,
+//                   confirmButtonClass: "btn btn-success",
+//                   type: "success"
+//               }).then(function() {
+//                 // window.location.href="index";
+//               })
+//         }
+//       });
+//   }).catch(swal.noop)
+// };
 
 </script>
 

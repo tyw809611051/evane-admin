@@ -12,7 +12,7 @@ class Category extends Model
     protected $table = 'category';
 
     protected $fillable = [
-        'name','status'
+        'name','feature_id','parent_id'
     ];
 
     public function addAll(array $data)
