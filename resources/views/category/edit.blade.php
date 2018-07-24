@@ -5,7 +5,7 @@
 	<div class="container-fluid">
 	    <div class="row">
 	    	<div class="col-md-12">
-		      <form id="category" class="form-horizontal" action="add" method="post" >
+		      <form id="category" class="form-horizontal" action="edit" method="post" data-id="{{$data['id']}}" data-success-address="{{url('category/index')}}">
 		      	{{ csrf_field() }}
 		        <div class="card ">
 		          <div class="card-header card-header-success card-header-text">
@@ -23,6 +23,35 @@
 		                </div>
 		              </div>
 	
+		            </div>
+
+					<div class="row">
+		              <label class="col-sm-2 col-form-label">排序</label>
+		              <div class="col-sm-7">
+		                <div class="form-group">
+		                  <input class="form-control" id="category-sort" type="number" name="sort" value="{{$data['sort']}}" autocomplete="off" />
+		                </div>
+		              </div>
+		        
+		            </div>
+
+		            <div class="row">
+		              <label class="col-sm-2 col-form-label">状态</label>
+		              <div class="col-sm-7">
+		                <div class="form-group">
+		                	<div class="togglebutton">
+			                <label>
+	                        <input type="checkbox" name="status" id="category-status"
+							@if ($data['status'] == 1)
+	                          checked 
+	                        @endif
+	                        >
+	                        <span class="toggle"></span>
+
+                      		</label>
+                    		</div>
+		                </div>
+		              </div>
 		            </div>
 
 		            <div class="row">
@@ -44,7 +73,7 @@
 
 		            <div class="row">
 		              <label class="col-sm-2 col-form-label">父级分类</label>
-		              <div class="col-lg-5 col-md-6 col-sm-3" id="featureList">
+		              <div class="col-lg-5 col-md-6 col-sm-3">
 						<select class="selectpicker" name="parent_cate" data-style="btn-success" id="parentCategory">
 						@foreach($parentCate as $parent )
 						<option value="{{$parent['id']}}" 
@@ -58,6 +87,8 @@
 						
                 	  </div>
 		            </div>
+
+					
 
 		          </div>
 		          <div class="card-footer ml-auto mr-auto">
@@ -117,13 +148,14 @@ $('#category').validate({
 			status = 1;
 		}
 		let postData = {
-			'name' : $('#feature-name').val(),
-			'desc' : $('#feature-desc').val(),
+			'name' : $('#category-name').val(),
+			'feature' : $('#featureList').val(),
+			'parent'  : $('#parentCategory').val(),
 			'status' : status,
-			'sort'   : $('#feature-sort').val(),
+			'sort'   : $('#category-sort').val(),
 			'_token' : $('input:hidden').val()
 		};
-		let apiUrl  = $('#feature').data('id');
+		let apiUrl  = $('#category').data('id');
 	
 	  	$.post(apiUrl, postData, function (data) {
 	  	
@@ -145,7 +177,7 @@ $('#category').validate({
 	                confirmButtonClass: "btn btn-success",
 	                type: "success"
 	            }).then(function() {
-	            	window.location.href=$('#feature').data('success-address');
+	            	window.location.href=$('#category').data('success-address');
 	            })
 	  		}
 	  	});
