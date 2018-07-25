@@ -7,24 +7,24 @@
         <!--      Wizard container        -->
         <div class="wizard-container">
         <div class="card card-wizard" data-color="green" id="wizardProfile">
-            <form action="" method="">
+            <form action="add" method="post" enctype="multipart/form-data">
             <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
             <div class="card-header text-center">
                 <h3 class="card-title">
-                Build Your Profile
+                新增文章
                 </h3>
-                <h5 class="card-description">This information will let us know more about you.</h5>
+                <h5 class="card-description">尽情展示你的才华吧.</h5>
             </div>
             <div class="wizard-navigation">
                 <ul class="nav nav-pills">
                 <li class="nav-item">
                     <a class="nav-link active" href="#about" data-toggle="tab" role="tab">
-                    About
+                    基本信息
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#address" data-toggle="tab" role="tab">
-                    Address
+                    文章内容
                     </a>
                 </li>
                 </ul>
@@ -32,7 +32,7 @@
             <div class="card-body">
                 <div class="tab-content">
                 <div class="tab-pane active" id="about">
-                    <h5 class="info-text"> Let's start with the basic information (with validation)</h5>
+                    <!-- <h5 class="info-text"> Let's start with the basic information (with validation)</h5> -->
                     <div class="row justify-content-center">
 
                     <div class="col-sm-4 col-md-4 col-lg-4">
@@ -43,11 +43,11 @@
                             <div class="fileinput-preview fileinput-exists thumbnail"></div>
                             <div>
                             <span class="btn btn-rose btn-round btn-file">
-                                <span class="fileinput-new">Select image</span>
-                                <span class="fileinput-exists">Change</span>
-                                <input type="file" name="..." />
+                                <span class="fileinput-new">选择图片</span>
+                                <span class="fileinput-exists">重选</span>
+                                <input type="file" name="picture" />
                             </span>
-                            <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                            <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> 删除</a>
                             </div>
                         </div>
                     </div>
@@ -60,8 +60,9 @@
                             </span>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInput1" class="bmd-label-floating">标题必填</label>
-                            <input type="text" class="form-control" id="exampleInput1" name="firstname" required>
+                            <label for="articleTitle" class="bmd-label-floating">标题必填</label>
+                            <input type="text" class="form-control" id="articleTitle" name="title" required>
+                            {{ csrf_field() }}
                         </div>
                         </div>
                         <div class="input-group form-control-lg">
@@ -71,8 +72,8 @@
                             </span>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInput11" class="bmd-label-floating">作者必填</label>
-                            <input type="text" class="form-control" id="exampleInput11" name="lastname" required>
+                            <label for="articleAuthor" class="bmd-label-floating">作者必填</label>
+                            <input type="text" class="form-control" id="articleAuthor" name="author" required>
                         </div>
                         </div>
                         <div class="input-group form-control-lg">
@@ -82,8 +83,8 @@
                             </span>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInput12" class="bmd-label-floating">默认为文章前54字</label>
-                            <textarea class="form-control" aria-label="With textarea" id="exampleInput12" name="excprt"></textarea>
+                            <label for="articleExcprt" class="bmd-label-floating">默认为文章前54字</label>
+                            <textarea class="form-control" aria-label="With textarea" id="articleExcprt" name="excprt"></textarea>
                         </div>
                         </div>
 
@@ -103,8 +104,8 @@
 
                         <div class="bootstrap-tagsinput">  
                             
-                            <input type="text" value="" data-role="tagsinput" class="form-control tagsinput" data-color="info" style="display: none;">
-                            <input type="text" placeholder="庆祝yi" class="form-control" size="4" style="position: absolute;left:-1000px;">
+                            <input type="text" value="" data-role="tagsinput" name="tag" class="form-control tagsinput" data-color="info" style="display: none;">
+                            <input type="text" placeholder="" class="form-control" size="4" style="position: absolute;left:-1000px;">
                         </div>
                         </div>
                     </div>
@@ -115,11 +116,11 @@
                 <div class="tab-pane" id="address">
                     <div class="row justify-content-center">
                     <div class="col-sm-12">
-                        <h5 class="info-text"> Are you living in a nice area? </h5>
+                        <!-- <h5 class="info-text"> Are you living in a nice area? </h5> -->
                     </div>
                     <div class="col-sm-12">
                         
-                        <textarea name="" id="myarticle" cols="30" rows="10"></textarea>
+                        <textarea name="" id="myarticle" cols="30" rows="100"></textarea>
                     </div>
                     </div>
                 </div>
@@ -127,11 +128,11 @@
             </div>
             <div class="card-footer">
                 <div class="mr-auto">
-                <input type="button" class="btn btn-previous btn-fill btn-default btn-wd disabled" name="previous" value="Previous">
+                <input type="button" class="btn btn-previous btn-fill btn-default btn-wd disabled" name="previous" value="上一步">
                 </div>
                 <div class="ml-auto">
-                <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="Next">
-                <input type="button" class="btn btn-finish btn-fill btn-rose btn-wd" name="finish" value="Finish" style="display: none;">
+                <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="下一步">
+                <input type="submit" class="btn btn-finish btn-fill btn-rose btn-wd"  value="完成" style="display: none;">
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -166,7 +167,10 @@
     }, 600);
 
     tinymce.init({
-        selector: '#myarticle'
+        selector: '#myarticle',
+        // mode : "textareas",
+        height: 500,
+        language:'zh_CN'
     });
   });
 

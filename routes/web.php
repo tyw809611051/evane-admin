@@ -14,14 +14,6 @@
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/article/add', function () {
-    return view('article.add');
-});
-
-Route::get('/article/index', function () {
-    return view('article.index');
-});
-
 
 //版块管理
 Route::group([
@@ -43,6 +35,17 @@ Route::group([
 	Route::match(['get', 'post'], 'edit/{id}','CategoryController@edit');
 	Route::get('delete/{id}','CategoryController@delete');
 	Route::get('changeStatus','CategoryController@changeStatus');
+});
+
+//文章管理
+Route::group([
+	'prefix' => '/article',
+	],function(){
+	Route::get('index','ArticleController@index');
+	Route::match(['get', 'post'], 'add','ArticleController@add');
+	Route::match(['get', 'post'], 'edit/{id}','ArticleController@edit');
+	Route::get('delete/{id}','ArticleController@delete');
+	Route::get('changeStatus','ArticleController@changeStatus');
 });
 // Route::get('/home', function () {
 //     return view('home');

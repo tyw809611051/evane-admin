@@ -6,9 +6,20 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
+	public function index(Request $request)
+	{
+		return view('article.index');
+	}
     //
-    public function add()
+    public function add(Request $request)
     {
-        echo 1;die;
+        if ($request->isMethod('post'))
+		{
+			$data = $request->all();
+			var_dump($data);die;
+		} else 
+		{
+			return view('article.add');
+		}
     }
 }
