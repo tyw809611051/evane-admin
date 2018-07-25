@@ -10,8 +10,13 @@ class CategoryController extends Controller
 {
 	public function index(Request $request)
 	{
-		$list = Category::paginate(10);
-		return view('category.index',['lists'=>$list]);
+		$feature = $request->get('feature','');
+		$list    = Category::when($feature,function($query) use($feature) {
+			return $query->where('feature_id',$feature);
+		})->paginate(10);
+		$featureList = Feature::where('status',1)->get();
+
+		return view('category.index',['lists'=>$list,'features'=>$featureList])->with('fId',$feature);
 	}
 
 	public function add(Request $request)

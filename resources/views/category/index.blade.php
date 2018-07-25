@@ -18,7 +18,19 @@
             <div class="row">
             	
             	<div class="col-md-10 ml-auto">
-            		<button class="btn btn-info">发布</button>
+            		<!-- <button class="btn btn-info">发布</button> -->
+                <select class="selectpicker" data-style="btn-info col-md-8">
+                  <option value="0">版块</option> 
+                  @foreach($features as $feature )
+                    <option value="{{$feature['id']}}" 
+                    @if ($feature['id'] == $fId)
+                      selected
+                    @endif
+                    >{{$feature['name']}}</option>
+              
+                  @endforeach
+                </select>
+
             	</div>
 
            		 <div class="col-md-2 ml-auto ">
@@ -77,7 +89,7 @@
                 @endforeach
               </tbody>
             </table>
-            {{ $lists->links('layouts.page') }}
+            {{ $lists->appends(['feature'=>$fId])->links('layouts.page') }}
 
           </div>
         </div>
@@ -97,9 +109,12 @@
 @section('javascript')
 @parent
 <script src="{{ asset('js/sweetalert2.js') }}" type="text/javascript"></script>
-
+<script src="{{ asset('js/bootstrap-selectpicker.js') }}" type="text/javascript"></script>
 <script>
-
+$('.selectpicker').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+  let feature = $(this).val();
+  window.location.href='index?feature='+feature;
+});
 </script>
 
 @stop

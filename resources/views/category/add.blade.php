@@ -42,6 +42,7 @@
 		              <label class="col-sm-2 col-form-label">父级分类</label>
 		              <div class="col-lg-5 col-md-6 col-sm-3">
 						<select class="selectpicker" name="parent_cate" data-style="btn-success" id="parentCategory">
+						<option value="0">顶级分类</option>
 						@foreach($parentCate as $parent )
 						<option value="{{$parent['id']}}">{{$parent['name']}}</option>
 			
