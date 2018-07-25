@@ -88,6 +88,28 @@
                         </div>
                         </div>
 
+                        <div class="input-group form-control-lg">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                            分类
+                            </span>
+                        </div>
+                        <div class="form-group">
+                           
+
+                            <select class="selectpicker" name="category" data-style="btn-success" id="categoryList">
+                                @foreach($features as $feature )
+                                    <optgroup label="{{$feature['name']}}">
+                                        @foreach($feature['category'] as $category)
+                                            <option value="{{$category['id']}}">{{$category['name']}}</option>
+                                        @endforeach
+                                    </optgroup>
+                                @endforeach
+                            </select>
+
+                        </div>
+                        </div>
+
 
                     </div>
 

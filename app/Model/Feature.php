@@ -15,6 +15,14 @@ class Feature extends Model
         'name','desc'
     ];
 
+    /*
+    *分类
+    */
+    public function category()
+    {
+        return $this->hasMany('App\Model\Category');
+    }
+    
     public function addAll(array $data)
     {
     	try {

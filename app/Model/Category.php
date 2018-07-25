@@ -15,6 +15,13 @@ class Category extends Model
         'name','feature_id','parent_id'
     ];
 
+    /*
+    *版块
+    */
+    public function feature()
+    {
+        return $this->belongsTo('App\Model\Feature');
+    }
     public function addAll(array $data)
     {
     	try {

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\Category;
+use App\Model\Feature;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -16,10 +19,12 @@ class ArticleController extends Controller
         if ($request->isMethod('post'))
 		{
 			$data = $request->all();
-			var_dump($data);die;
+			$rs = $request->file('picture')->storeAs('picture','tangyiwen.jpg');
+			var_dump($rs);die;
 		} else 
 		{
-			return view('article.add');
+			$feature = Feature::with('category')->get();
+			return view('article.add',['features'=>$feature]);
 		}
     }
 }
