@@ -10,7 +10,7 @@
           <div class="card-icon">
             <i class="material-icons">assignment</i>
           </div>
-          <h4 class="card-title">版块</h4>
+          <h4 class="card-title">角色</h4>
         </div>
         <div class="card-body">
           <div class="toolbar">
@@ -18,7 +18,7 @@
             <div class="row">
             	
             	<div class="col-md-10 ml-auto">
-            		<button class="btn btn-info">发布</button>
+            		<!-- <button class="btn btn-info">发布</button> -->
             	</div>
 
            		 <div class="col-md-2 ml-auto ">

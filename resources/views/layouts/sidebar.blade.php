@@ -15,7 +15,7 @@
         </div>
         <ul class="nav">
             <li class="nav-item active ">
-                <a class="nav-link" href="../examples/dashboard.html">
+                <a class="nav-link" href="/">
                     <i class="material-icons">dashboard</i>
                     <p> 网站统计 </p>
                 </a>
@@ -70,7 +70,7 @@
                 <div class="collapse" id="commentExamples">
                     <ul class="nav">
                         <li class="nav-item ">
-                            <a class="nav-link" href="../examples/pages/pricing.html">
+                            <a class="nav-link" href="{{url('comment/index')}}">
                               <span class="sidebar-mini"> 评 </span>
                               <span class="sidebar-normal"> 评论列表 </span>
                             </a>
@@ -90,7 +90,7 @@
                 <div class="collapse" id="messageExamples">
                     <ul class="nav">
                         <li class="nav-item ">
-                            <a class="nav-link" href="../examples/pages/pricing.html">
+                            <a class="nav-link" href="{{url('message/index')}}">
                               <span class="sidebar-mini"> 留 </span>
                               <span class="sidebar-normal"> 留言列表 </span>
                             </a>
@@ -110,7 +110,7 @@
                 <div class="collapse" id="memberExamples">
                     <ul class="nav">
                         <li class="nav-item ">
-                            <a class="nav-link" href="../examples/pages/pricing.html">
+                            <a class="nav-link" href="{{url('member/index')}}">
                               <span class="sidebar-mini"> 用 </span>
                               <span class="sidebar-normal"> 用户列表 </span>
                             </a>
@@ -130,31 +130,37 @@
                 <div class="collapse" id="aboutExamples">
                     <ul class="nav">
                         <li class="nav-item ">
+                            <a class="nav-link" href="{{url('user/index')}}">
+                              <span class="sidebar-mini"> 用 </span>
+                              <span class="sidebar-normal"> 用户管理 </span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
                             <a class="nav-link" href="{{url('role/index')}}">
                               <span class="sidebar-mini"> 角 </span>
                               <span class="sidebar-normal"> 角色管理 </span>
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="../examples/pages/pricing.html">
+                            <a class="nav-link" href="{{url('permission/index')}}">
                               <span class="sidebar-mini"> 权 </span>
                               <span class="sidebar-normal"> 权限管理 </span>
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="../examples/pages/pricing.html">
+                            <a class="nav-link" href="{{url('operate/index')}}">
                               <span class="sidebar-mini"> 操 </span>
                               <span class="sidebar-normal"> 操作记录 </span>
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="../examples/pages/pricing.html">
+                            <a class="nav-link" href="{{url('cache/index')}}">
                               <span class="sidebar-mini"> 缓 </span>
                               <span class="sidebar-normal"> 缓存管理 </span>
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="../examples/pages/pricing.html">
+                            <a class="nav-link" href="{{url('record /index')}}">
                               <span class="sidebar-mini"> 日 </span>
                               <span class="sidebar-normal"> 日志管理 </span>
                             </a>
@@ -174,7 +180,7 @@
                 <div class="collapse" id="systemExamples">
                     <ul class="nav">
                         <li class="nav-item ">
-                            <a class="nav-link" href="../examples/pages/pricing.html">
+                            <a class="nav-link" href="{{url('setting/index')}}">
                               <span class="sidebar-mini"> P </span>
                               <span class="sidebar-normal"> Pricing </span>
                             </a>
