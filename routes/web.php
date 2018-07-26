@@ -51,6 +51,17 @@ Route::group([
 	Route::get('changeStatus','ArticleController@changeStatus');
 });
 
+//角色管理
+Route::group([
+	'prefix' => '/role',
+	'middleware' => 'auth'
+	],function(){
+	Route::get('index','RoleController@index');
+	Route::match(['get', 'post'], 'add','RoleController@add');
+	Route::match(['get', 'post'], 'edit/{id}','RoleController@edit');
+	Route::get('delete/{id}','RoleController@delete');
+	Route::get('changeStatus','RoleController@changeStatus');
+});
 Route::match(['get', 'post'], '/login','UserController@login')->name('login');
 Route::get('/logout','UserController@logout')->name('logout');
 
