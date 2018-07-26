@@ -263,7 +263,7 @@
     		</button>
 
     	  <div class="collapse navbar-collapse justify-content-end">       
-          <form class="navbar-form">
+       <!--    <form class="navbar-form">
               <div class="input-group no-border">
                   <input type="text" value="" class="form-control" placeholder="Search...">
                   <button type="submit" class="btn btn-white btn-round btn-just-icon">
@@ -271,7 +271,7 @@
                     <div class="ripple-container"></div>
                   </button>
               </div>
-          </form>
+          </form> -->
 
           <ul class="navbar-nav">
             <li class="nav-item">
@@ -300,12 +300,16 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="#pablo">
+              <a class="nav-link" href="#pablo" id="userDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="material-icons">person</i>
                 <p class="d-lg-none d-md-block">
                   Account
                 </p>
               </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdownMenuLink">
+                <a class="dropdown-item" href="{{url('/logout')}}">注销</a>
+              </div>
+
             </li>
           </ul> 
     	  </div>

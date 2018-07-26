@@ -59,10 +59,10 @@
   <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
   <div class="container">
     <div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
-      <form class="form" method="post" action="/verify">
+      <form class="form" method="post" action="{{url('/login')}}">
         <div class="card card-login card-hidden">
           <div class="card-header card-header-rose text-center">
-            <h4 class="card-title">Login</h4>
+            <h4 class="card-title">登录</h4>
             <div class="social-line">
               <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
                 <i class="fa fa-facebook-square"></i>

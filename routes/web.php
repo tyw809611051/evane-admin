@@ -18,6 +18,7 @@ Route::get('/', function () {
 //版块管理
 Route::group([
 	'prefix' => '/feature',
+	'middleware' => 'auth'
 	],function(){
 	Route::get('index','FeatureController@index');
 	Route::match(['get', 'post'], 'add','FeatureController@add');
@@ -29,6 +30,7 @@ Route::group([
 //分类管理
 Route::group([
 	'prefix' => '/category',
+	'middleware' => 'auth'
 	],function(){
 	Route::get('index','CategoryController@index');
 	Route::match(['get', 'post'], 'add','CategoryController@add');
@@ -40,6 +42,7 @@ Route::group([
 //文章管理
 Route::group([
 	'prefix' => '/article',
+	'middleware' => 'auth'
 	],function(){
 	Route::get('index','ArticleController@index');
 	Route::match(['get', 'post'], 'add','ArticleController@add');
@@ -47,32 +50,9 @@ Route::group([
 	Route::get('delete/{id}','ArticleController@delete');
 	Route::get('changeStatus','ArticleController@changeStatus');
 });
-// Route::get('/home', function () {
-//     return view('home');
-// });
 
-// Route::get('/reg', function () {
-//     return view('register');
-// });
-
-// Route::post('/ver',[
-//     'uses' => 'UserController@ver'
-// ]);
-Route::get('/login', function () {
-    return view('auth/login');
-})->name('login');
-
-// Route::group([
-//     'prefix' => 'article',
-//     'middleware' => 'auth:web'
-// ],function(){
-//     Route::get('add','ArticleController@add');
-// });
-
-Route::get('/test','UserController@test');
-// Auth::routes();
-
-Route::post('/verify ','UserController@login');
+Route::match(['get', 'post'], '/login','UserController@login')->name('login');
+Route::get('/logout','UserController@logout')->name('logout');
 
 Route::any('/{path?}',function ($path='/'){
     return view('layouts.404');
