@@ -93,27 +93,27 @@ $('#role').validate({
 		};
 	  	$.post('add', postData, function (data) {
 	  		console.log(data);
-	  		// if (data.error_code > 0)
-	  		// {
-	  		// 	swal({
-	    //             title: data.msg,
-	    //             // text: "I will close in 2 seconds.",
-	    //             timer: 2000,
-	    //             showConfirmButton: false
-	    //         })
-	  		// }
+	  		if (data.error_code > 0)
+	  		{
+	  			swal({
+	                title: data.msg,
+	                // text: "I will close in 2 seconds.",
+	                timer: 2000,
+	                showConfirmButton: false
+	            })
+	  		}
 
-	  		// if (data.error_code == 0)
-	  		// {
-	  		// 	swal({
-	    //             title: data.msg,
-	    //             buttonsStyling: false,
-	    //             confirmButtonClass: "btn btn-success",
-	    //             type: "success"
-	    //         }).then(function() {
-	    //         	window.location.href="index";
-	    //         })
-	  		// }
+	  		if (data.error_code == 0)
+	  		{
+	  			swal({
+	                title: data.msg,
+	                buttonsStyling: false,
+	                confirmButtonClass: "btn btn-success",
+	                type: "success"
+	            }).then(function() {
+	            	window.location.href="index";
+	            })
+	  		}
 	  	});
 	}
 

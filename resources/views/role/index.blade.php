@@ -35,9 +35,10 @@
                 <tr>
                   <th>ID</th>
                   <th>名称</th>
+                  <th>展示名称</th>
                   <th>描述</th>
                   <th>状态</th>
-                  <th>排序</th>
+                  <th>权限</th>
                   <th class="text-right">创建时间</th>
                   <th class="disabled-sorting text-right">操作</th>
                 </tr>
@@ -48,6 +49,7 @@
                 <tr data-id="{{$list['id']}}" data-status="">
                   <td>{{$list['id']}}</td>
                   <td>{{$list['name']}}</td>
+                  <td>{{$list['display_name']}}</td>
                   <td>{{$list['desc']}}</td>
                   <td>
                     <div class="togglebutton">
@@ -67,11 +69,12 @@
                       </label>
                     </div>
                   </td>
-                  <td>{{$list['sort']}}</td>
+
+                  <td><a href="">查看</a></td>
                   <td class="text-right">{{$list['created_at']}}</td>
                   <td class="text-right">
                     <!-- <a href="#" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a> -->
-                    <a href="{{url('feature/edit',['id'=>$list['id']])}}" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
+                    <a href="{{url('role/edit',['id'=>$list['id']])}}" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
                     <a href="javascript:false;" class="btn btn-link btn-danger btn-just-icon remove" id="feature-del" data-id="{{$list['id']}}" onclick="del({{$list['id']}});" ><i class="material-icons">close</i></a>
                   </td>
                 </tr>
