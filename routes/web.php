@@ -62,12 +62,33 @@ Route::group([
 	Route::get('delete/{id}','RoleController@delete');
 	Route::get('changeStatus','RoleController@changeStatus');
 });
+
+//权限管理
+Route::group([
+	'prefix' => '/permission',
+	'middleware' => 'auth'
+	],function(){
+	Route::get('index','PermissionController@index');
+	Route::match(['get', 'post'], 'add','PermissionController@add');
+	Route::match(['get', 'post'], 'edit/{id}','PermissionController@edit');
+	Route::get('delete/{id}','PermissionController@delete');
+	Route::get('changeStatus','PermissionController@changeStatus');
+});
+
+//用户管理
+Route::group([
+	'prefix' => '/user',
+	'middleware' => 'auth'
+	],function(){
+	Route::get('index','UserController@index');
+	Route::match(['get', 'post'], 'add','UserController@add');
+	Route::match(['get', 'post'], 'edit/{id}','UserController@edit');
+	Route::get('delete/{id}','UserController@delete');
+	Route::get('changeStatus','UserController@changeStatus');
+});
+
 Route::match(['get', 'post'], '/login','UserController@login')->name('login');
 Route::get('/logout','UserController@logout')->name('logout');
-
-Route::get('/role/add','RoleController@add');
-
-Route::get('/permission/add','PermissionController@add');
 
 Route::any('/{path?}',function ($path='/'){
     return view('layouts.404');
