@@ -54,6 +54,10 @@ Route::group([
 Route::match(['get', 'post'], '/login','UserController@login')->name('login');
 Route::get('/logout','UserController@logout')->name('logout');
 
+Route::get('/role/add','RoleController@add');
+
+Route::get('/permission/add','PermissionController@add');
+
 Route::any('/{path?}',function ($path='/'){
     return view('layouts.404');
 })->where('path','.*');
