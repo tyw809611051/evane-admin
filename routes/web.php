@@ -75,6 +75,6 @@ Route::get('/test','UserController@test');
 Route::post('/verify ','UserController@login');
 
 Route::any('/{path?}',function ($path='/'){
-    return error(404,'服务接口不存在',['path'=>$path]);
+    return view('layouts.404');
 })->where('path','.*');
 

@@ -18,9 +18,22 @@ class ArticleController extends Controller
     {
         if ($request->isMethod('post'))
 		{
-			$data = $request->all();
-			$rs = $request->file('picture')->storeAs('picture','tangyiwen.jpg');
-			var_dump($rs);die;
+			$data = $request->all();return error('',$request->all());
+
+			$file = $request->file('picture');
+			// if ($file->isValid())
+			// {
+			// 	//获取文件扩展名
+			// 	$ext = $file->getClientOriginalExtension();
+			// 	//获取文件绝对路径
+			// 	$originPath = md5_file($file->getRealPath());
+
+			// 	//定义文件名
+			// 	$fileName   = $originPath. '.' . $ext;
+			// 	$file->storeAs('banner',$fileName,'public');
+
+			// }
+			var_dump($data);
 		} else 
 		{
 			$feature = Feature::with('category')->get();

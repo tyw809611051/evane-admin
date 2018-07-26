@@ -7,7 +7,7 @@
         <!--      Wizard container        -->
         <div class="wizard-container">
         <div class="card card-wizard" data-color="green" id="wizardProfile">
-            <form action="add" method="post" enctype="multipart/form-data">
+            <form action="add" method="post"  id="article">
             <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
             <div class="card-header text-center">
                 <h3 class="card-title">
@@ -45,7 +45,7 @@
                             <span class="btn btn-rose btn-round btn-file">
                                 <span class="fileinput-new">选择图片</span>
                                 <span class="fileinput-exists">重选</span>
-                                <input type="file" name="picture" />
+                                <input type="file" name="picture" id="articlePicture" />
                             </span>
                             <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> 删除</a>
                             </div>
@@ -61,7 +61,7 @@
                         </div>
                         <div class="form-group">
                             <label for="articleTitle" class="bmd-label-floating">标题必填</label>
-                            <input type="text" class="form-control" id="articleTitle" name="title" required>
+                            <input type="text" class="form-control" id="articleTitle" name="abctitle" required >
                             {{ csrf_field() }}
                         </div>
                         </div>
@@ -96,7 +96,6 @@
                         </div>
                         <div class="form-group">
                            
-
                             <select class="selectpicker" name="category" data-style="btn-success" id="categoryList">
                                 @foreach($features as $feature )
                                     <optgroup label="{{$feature['name']}}">
@@ -125,8 +124,8 @@
                         </div>
 
                         <div class="bootstrap-tagsinput">  
-                            
-                            <input type="text" value="" data-role="tagsinput" name="tag" class="form-control tagsinput" data-color="info" style="display: none;">
+                        
+                            <input type="text" value="" data-role="tagsinput" name="abctag" id="articleTag" class="form-control tagsinput" data-color="info" style="display: none;">
                             <input type="text" placeholder="" class="form-control" size="4" style="position: absolute;left:-1000px;">
                         </div>
                         </div>
@@ -142,7 +141,7 @@
                     </div>
                     <div class="col-sm-12">
                         
-                        <textarea name="" id="myarticle" cols="30" rows="100"></textarea>
+                        <textarea name="content" id="articleContent" cols="30" rows="100"></textarea>
                     </div>
                     </div>
                 </div>
@@ -154,7 +153,7 @@
                 </div>
                 <div class="ml-auto">
                 <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="下一步">
-                <input type="submit" class="btn btn-finish btn-fill btn-rose btn-wd"  value="完成" style="display: none;">
+                <input type="submit" class="btn btn-finish btn-fill btn-rose btn-wd submit"  value="完成" style="display: none;">
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -175,7 +174,6 @@
 
 <script src="{{ asset('js/form-wizard.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/jasny-bootstrap.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('js/jasny-bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/bootstrap-tagsinput.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/bootstrap-selectpicker.js') }}" type="text/javascript"></script>
 
@@ -189,12 +187,73 @@
     }, 600);
 
     tinymce.init({
-        selector: '#myarticle',
+        selector: '#articleContent',
         // mode : "textareas",
-        height: 500,
+        // height: 500,
         language:'zh_CN'
     });
   });
+</script>
+<script>
+$('#article').validate({
+    focusCleanup:true,
+    rules : {
+        abctitle : 'required',
+        abctag   : 'required'
+    },
+    messages : {
+        abctitle : '标题不能为空',
+        abctag   : '标签不能为空'
+    },
+    errorPlacement: function(error, element) {
+    // Append error within linked label
+        error.appendTo(element.parent());  
+    },
+    errorElement: "span",
+    errorClass : 'text-danger',
+    success:function(label) {
+
+    },
+    submitHandler: function(form)
+    {
+        let postData = {
+            'title' : $('#articleTitle').val(),
+            'author' : $('#articleAuthor').val(),
+            'excprt' : $('#articleExcprt').val(),
+            'category' : $('#categoryList').val(),
+            'picture' : new FormData($('#articlePicture')[0]),
+            'tag' : $('#articleTag').val(),
+            // 'content' : $('#articleContent').val(),
+            '_token' : $('input[name=_token]').val()
+        };
+
+        $.post('add', postData, function (data) {
+            console.log(data);
+            // if (data.error_code > 0)
+            // {
+            //     swal({
+            //         title: data.msg,
+            //         // text: "I will close in 2 seconds.",
+            //         timer: 2000,
+            //         showConfirmButton: false
+            //     })
+            // }
+
+            // if (data.error_code == 0)
+            // {
+            //     swal({
+            //         title: data.msg,
+            //         buttonsStyling: false,
+            //         confirmButtonClass: "btn btn-success",
+            //         type: "success"
+            //     }).then(function() {
+            //         window.location.href="index";
+            //     })
+            // }
+        });
+    }
+
+});
 
 </script>
 
