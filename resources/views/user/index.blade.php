@@ -1,5 +1,14 @@
 @extends('layouts.app')
+@section('stylesheet')
+@parent
 
+<style>
+
+  .form-check .form-check-label span {
+    top : 10px;
+  }
+</style>
+@stop
 @section('content')
 <div class="content">
   <div class="container-fluid">
@@ -66,7 +75,57 @@
                       </label>
                     </div>
                   </td>
-                  <td ><a href="">查看</a></td>
+                  <td ><a href="" data-toggle="modal" data-target="#myModal">查看</a>
+                  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">Modal title</h4>
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="material-icons">clear</i>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+              <!-- <label class="col-sm-2 col-form-label label-checkbox">Inline checkboxes</label> -->
+              <div class="col-sm-10 checkbox-radios">
+                <div class="form-check form-check-inline">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value=""> a
+                    <span class="form-check-sign">
+                      <span class="check"></span>
+                    </span>
+                  </label>
+                </div>
+                <div class="form-check form-check-inline" >
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value=""> b
+                    <span class="form-check-sign">
+                      <span class="check"></span>
+                    </span>
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value=""> c
+                    <span class="form-check-sign">
+                      <span class="check"></span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+                          
+                        
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-link">Nice Button</button>
+                          <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </td>
                   <td class="text-right">{{$list['updated_at']}}</td>
                   <td class="text-right">
                     <!-- <a href="#" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a> -->
