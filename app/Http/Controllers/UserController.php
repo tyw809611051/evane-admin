@@ -15,6 +15,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $list = User::paginate(10);
+
         return view('user.index',['lists'=> $list]);
     }
 
@@ -99,5 +100,28 @@ class UserController extends Controller
     {
         Auth::logout();
         return redirect('login');
+    }
+
+    /*
+     * 获取权限
+    */
+    public function role($id, Request $request)
+    {
+        //用户权限
+        $userRole = User::find($id)->roles()->get()->toArray();
+        $urId     = array_column($userRole,'id');
+        //所有权限
+        $role = Role::get();
+
+        foreach($role as $k => $v)
+        {
+            $role[$k]['checked'] = "-1";
+
+            if (in_array($v['id'], $urId))
+            {
+                $role[$k]['checked'] = "1";
+            }
+        }
+        return success($role);
     }
 }

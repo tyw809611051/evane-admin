@@ -3,7 +3,6 @@
 @parent
 
 <style>
-
   .form-check .form-check-label span {
     top : 10px;
   }
@@ -75,48 +74,24 @@
                       </label>
                     </div>
                   </td>
-                  <td ><a href="" data-toggle="modal" data-target="#myModal">查看</a>
-                  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                  <td ><a href="" data-toggle="modal" data-target="#myModal{{$list['id']}}" onclick="allocaRole({{$list['id']}})">查看</a>
+                  <div class="modal fade" id="myModal{{$list['id']}}" tabindex="-1" role="dialog" aria-labelledby="myModal{{$list['id']}}Label" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h4 class="modal-title">Modal title</h4>
+                          <h4 class="modal-title">分配权限</h4>
                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             <i class="material-icons">clear</i>
                           </button>
                         </div>
                         <div class="modal-body">
                             <div class="row">
-              <!-- <label class="col-sm-2 col-form-label label-checkbox">Inline checkboxes</label> -->
-              <div class="col-sm-10 checkbox-radios">
-                <div class="form-check form-check-inline">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" value=""> a
-                    <span class="form-check-sign">
-                      <span class="check"></span>
-                    </span>
-                  </label>
-                </div>
-                <div class="form-check form-check-inline" >
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" value=""> b
-                    <span class="form-check-sign">
-                      <span class="check"></span>
-                    </span>
-                  </label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" value=""> c
-                    <span class="form-check-sign">
-                      <span class="check"></span>
-                    </span>
-                  </label>
-                </div>
-              </div>
-            </div>
-                          
-                        
+                              <div class="col-sm-12 checkbox-radios">
+                                <form action="" id="roleForm{{$list['id']}}">
+                              
+                              </form>
+                              </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-link">Nice Button</button>
@@ -159,7 +134,31 @@
 
 <script>
 
-
+function allocaRole(id)
+{
+  let apiUrl = 'role/'+id;
+   $.get(apiUrl, '', function (data) 
+   {
+      let content = '';
+      $.each(data.data,function(i,item) {
+          
+          choice = '';
+          if (item['checked'] == "1")
+          {
+              choice = 'checked';
+          }
+          content += '<div class="form-check form-check-inline">'+
+                        '<label class="form-check-label">'+
+                          '<input class="form-check-input" type="checkbox" value='+item['id']+' '+choice+'> '+item['display_name']+
+                          '<span class="form-check-sign">'+
+                            '<span class="check"></span>'+
+                          '</span>'+
+                        '</label>'+
+                      '</div>'
+      })
+      $('#roleForm'+id).append(content);
+   });
+}
 </script>
 
 @stop

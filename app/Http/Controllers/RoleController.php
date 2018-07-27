@@ -18,6 +18,7 @@ class RoleController extends Controller
         $list = Role::paginate(10);
         return view('role.index',['lists'=> $list]);
     }
+    
     public function add(Request $request)
     {
         if ($request->isMethod('post')) 

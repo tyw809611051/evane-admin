@@ -78,13 +78,14 @@ Route::group([
 //用户管理
 Route::group([
 	'prefix' => '/user',
-	'middleware' => 'auth'
+	// 'middleware' => 'auth'
 	],function(){
 	Route::get('index','UserController@index');
 	Route::match(['get', 'post'], 'add','UserController@add');
 	Route::match(['get', 'post'], 'edit/{id}','UserController@edit');
 	Route::get('delete/{id}','UserController@delete');
 	Route::get('changeStatus','UserController@changeStatus');
+	Route::get('role/{id}','UserController@role');
 });
 
 Route::match(['get', 'post'], '/login','UserController@login')->name('login');
