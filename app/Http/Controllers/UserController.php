@@ -45,6 +45,28 @@ class UserController extends Controller
             return view('user.add',['roles'=>$roles]);
         }
     }
+
+    public function edit($id, Request $request)
+    {
+        $data = User::with(['roles'])->where('id',$id)->get();
+
+        return view('user.edit',['data'=>$data]);
+    }
+
+    public function delete($id)
+    {
+        $userModel = User::find($id);
+
+        $userModel->roles()->detach();
+        $rs = $userModel->delete();
+
+        if ($rs === false)
+        {
+            return error('44002','删除失败');
+        }
+
+        return success('','删除成功');
+    }
     public function changeStatus(Request $request)
     {
         $status = $request->get('status');

@@ -5,12 +5,12 @@
 	<div class="container-fluid">
 	    <div class="row">
 	    	<div class="col-md-12">
-		      <form id="feature" class="form-horizontal" action="edit" method="post" data-id="{{$data['id']}}" data-success-address="{{url('feature/index')}}">
+		      <form id="user" class="form-horizontal" action="add" method="post" >
 		      	{{ csrf_field() }}
 		        <div class="card ">
 		          <div class="card-header card-header-success card-header-text">
 		            <div class="card-text">
-		              <h4 class="card-title">编辑版块</h4>
+		              <h4 class="card-title">编辑用户</h4>
 		            </div>
 		          </div>
 		          <div class="card-body ">
@@ -18,54 +18,58 @@
 		              <label class="col-sm-2 col-form-label" >名称</label>
 		              <div class="col-sm-7">
 		                <div class="form-group">
-		                  <input class="form-control" id="feature-name" type="text" name="name" value="{{$data['name']}}" maxLength="5" required="true" placeholder="请填写版块名称,不超过5个字" autocomplete="off" />
+		                  <input class="form-control" id="user-name" type="text" name="name" maxLength="30" required="true" placeholder="请填写用户名称" autocomplete="off" />
 		                  
 		                </div>
 		              </div>
 	
 		            </div>
 		            <div class="row">
-		              <label class="col-sm-2 col-form-label">描述</label>
+		              <label class="col-sm-2 col-form-label">邮箱</label>
 		              <div class="col-sm-7">
 		                <div class="form-group">
-		                  <input class="form-control" id="feature-desc" type="text" name="desc" value="{{$data['desc']}}" placeholder="不超过20个字"  autocomplete="off"/>
-		                </div>
-		              </div>
-		        
-		            </div>
-		            <div class="row">
-		              <label class="col-sm-2 col-form-label">状态</label>
-		              <div class="col-sm-7">
-		                <div class="form-group">
-		                	<div class="togglebutton">
-			                <label>
-	                        <input type="checkbox" name="status" id="feature-status"
-							@if ($data['status'] == 1)
-	                          checked 
-	                        @endif
-	                        >
-	                        <span class="toggle"></span>
-
-                      		</label>
-                    		</div>
+		                  <input class="form-control" id="user-email" type="email" name="email"   placeholder="不超过20个字"  autocomplete="off"/>
 		                </div>
 		              </div>
 		        
 		            </div>
 
 		            <div class="row">
-		              <label class="col-sm-2 col-form-label">排序</label>
+		              <label class="col-sm-2 col-form-label">角色</label>
 		              <div class="col-sm-7">
 		                <div class="form-group">
-		                  <input class="form-control" id="feature-sort" type="number" name="sort" value="{{$data['sort']}}" autocomplete="off" />
+		                	<select class="selectpicker" multiple id="user-role" name="role" data-style="btn-success">
+		                	<!-- @foreach($roles as $role)
+							  <option value="{{$role['id']}}">{{$role['name']}}</option>
+							@endforeach -->
+							</select>
 		                </div>
 		              </div>
 		        
 		            </div>
 
+		            <div class="row">
+		              <label class="col-sm-2 col-form-label">原始密码</label>
+		              <div class="col-sm-7">
+		                <div class="form-group">
+		                  <input class="form-control" id="user-password" type="text" name="password"   placeholder="不超过20个字"  autocomplete="off"/>
+		                </div>
+		              </div>
+		        
+		            </div>
+
+		            <div class="row">
+		              <label class="col-sm-2 col-form-label">新密码</label>
+		              <div class="col-sm-7">
+		                <div class="form-group">
+		                  <input class="form-control" id="user-review-password" type="text" name="reviewPassword"  placeholder="不超过20个字"  autocomplete="off"/>
+		                </div>
+		              </div>
+		        
+		            </div>
 		          </div>
 		          <div class="card-footer ml-auto mr-auto">
-		            <button type="submit" class="btn btn-rose" id="content-submit">更新</button>
+		            <button type="submit" class="btn btn-rose" id="content-submit">提交</button>
 		          </div>
 		        </div>
 		      </form>
@@ -81,29 +85,30 @@
 @parent
 <script src="{{ asset('js/jquery.validate.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/sweetalert2.js') }}" type="text/javascript"></script>
-
+<script src="{{ asset('js/bootstrap-selectpicker.js') }}" type="text/javascript"></script>
 <script>
 
-$('#feature').validate({
+$('#user').validate({
 	focusCleanup:true,
 	rules : {
 		name : 'required',
-		desc : {
-			maxlength : 20
-		},
-		sort : {
-			number:true,
-			min:0
+		email : 'required',
+		password : 'required',
+		role : 'required',
+		reviewPassword : {
+			required : true,
+			equalTo:"#user-password"
 		}
+		
 	},
 	messages : {
 		name : '名称不能为空',
-		desc : {
-			maxlength : '不能超过20个字符'
-		},
-		sort : {
-			number:'必须是数字',
-			min: '不能小于0'
+		email : '邮箱不能为空',
+		password : '密码不能为空',
+		role : '角色不能为空',
+		reviewPassword : {
+			required : '确认密码不能为空',
+			equalTo:"密码不一致"
 		}
 	},
 	errorPlacement: function(error, element) {
@@ -117,25 +122,15 @@ $('#feature').validate({
 	},
 	submitHandler: function(form)
 	{
-		let status = $('input[type=checkbox]:checked').val();
-		if (status === undefined)
-		{
-			status = -1;
-		} else 
-		{
-			status = 1;
-		}
 		let postData = {
-			'name' : $('#feature-name').val(),
-			'desc' : $('#feature-desc').val(),
-			'status' : status,
-			'sort'   : $('#feature-sort').val(),
+			'name' : $('#user-name').val(),
+			'email' : $('#user-email').val(),
+			'role' : $('#user-role').val(),
+			'password' : $('#user-password').val(),
 			'_token' : $('input:hidden').val()
 		};
-		let apiUrl  = $('#feature').data('id');
-	
-	  	$.post(apiUrl, postData, function (data) {
-	  	
+	  	$.post('add', postData, function (data) {
+	  		console.log(data);
 	  		if (data.error_code > 0)
 	  		{
 	  			swal({
@@ -154,7 +149,7 @@ $('#feature').validate({
 	                confirmButtonClass: "btn btn-success",
 	                type: "success"
 	            }).then(function() {
-	            	window.location.href=$('#feature').data('success-address');
+	            	window.location.href="index";
 	            })
 	  		}
 	  	});
