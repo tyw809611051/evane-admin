@@ -124,4 +124,18 @@ class UserController extends Controller
         }
         return success($role);
     }
+
+    /*
+     *分配权限
+    */
+    public function assignRoles($id, Request $request)
+    {
+        $roleIds   = $request->post('roleId');
+        $userModel = User::find($id);
+
+        $userModel->roles()->detach();
+        $rs        = $userModel->roles()->attach($roleIds);
+
+        return success('ok','添加成功');
+    } 
 }

@@ -125,7 +125,7 @@
 
                         <div class="bootstrap-tagsinput">  
                         
-                            <input type="text" value="" data-role="tagsinput" name="abctag" id="articleTag" class="form-control tagsinput" data-color="info" style="display: none;">
+                            <input type="text" value="" data-role="tagsinput" name="abctag" id="articleTag" class="form-control tagsinput" data-color="info" style="display: none;" required>
                             <input type="text" placeholder="" class="form-control" size="4" style="position: absolute;left:-1000px;">
                         </div>
                         </div>
@@ -152,7 +152,7 @@
                 <input type="button" class="btn btn-previous btn-fill btn-default btn-wd disabled" name="previous" value="上一步">
                 </div>
                 <div class="ml-auto">
-                <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="下一步">
+                <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="下一步" id="nextButton">
                 <input type="submit" class="btn btn-finish btn-fill btn-rose btn-wd submit"  value="完成" style="display: none;">
                 </div>
                 <div class="clearfix"></div>
@@ -169,7 +169,7 @@
 
 @section('javascript')
 @parent
-<script src="{{ asset('js/jquery.validate.min.js') }}" type="text/javascript"></script>
+
 <script src="{{ asset('js/jquery.bootstrap-wizard.js') }}" type="text/javascript"></script>
 
 <script src="{{ asset('js/form-wizard.js') }}" type="text/javascript"></script>
@@ -178,6 +178,9 @@
 <script src="{{ asset('js/bootstrap-selectpicker.js') }}" type="text/javascript"></script>
 
 <script src="{{ asset('js/tinymce/tinymce.min.js') }}" type="text/javascript"></script>
+
+<script src="{{ asset('js/jquery.validate.min.js') }}" type="text/javascript"></script>
+
 <script>
   $(document).ready(function(){
     // Initialise the wizard
@@ -195,7 +198,70 @@
   });
 </script>
 <script>
-$('#article').validate({
+$(function(){
+   $('#article').validate({
+    focusCleanup:true,
+    rules : {
+        
+        abctitle : 'required',
+        abctag   : 'required'
+    },
+    messages : {
+        abctitle : '标题不能为空',
+        abctag   : '标签不能为空'
+    },
+    errorPlacement: function(error, element) {
+    // Append error within linked label
+        console.log(error);
+        error.appendTo(element.parent());  
+    },
+    errorElement: "span",
+    errorClass : 'text-danger',
+    success:function(label) {
+ console.log(label);
+    },
+    submitHandler: function(form)
+    {
+        let postData = {
+            'title' : $('#articleTitle').val(),
+            'author' : $('#articleAuthor').val(),
+            'excprt' : $('#articleExcprt').val(),
+            'category' : $('#categoryList').val(),
+            'picture' : new FormData($('#articlePicture')[0]),
+            'tag' : $('#articleTag').val(),
+            // 'content' : $('#articleContent').val(),
+            '_token' : $('input[name=_token]').val()
+        };
+
+        $.post('add', postData, function (data) {
+            console.log(data);
+            // if (data.error_code > 0)
+            // {
+            //     swal({
+            //         title: data.msg,
+            //         // text: "I will close in 2 seconds.",
+            //         timer: 2000,
+            //         showConfirmButton: false
+            //     })
+            // }
+
+            // if (data.error_code == 0)
+            // {
+            //     swal({
+            //         title: data.msg,
+            //         buttonsStyling: false,
+            //         confirmButtonClass: "btn btn-success",
+            //         type: "success"
+            //     }).then(function() {
+            //         window.location.href="index";
+            //     })
+            // }
+        });
+    }
+
+}); 
+})
+$('#nextButton').validate({
     focusCleanup:true,
     rules : {
         abctitle : 'required',

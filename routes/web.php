@@ -86,6 +86,7 @@ Route::group([
 	Route::get('delete/{id}','UserController@delete');
 	Route::get('changeStatus','UserController@changeStatus');
 	Route::get('role/{id}','UserController@role');
+	Route::post('assignRoles/{id}','UserController@assignRoles');
 });
 
 Route::match(['get', 'post'], '/login','UserController@login')->name('login');

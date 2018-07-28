@@ -10,6 +10,7 @@
 @stop
 @section('content')
 <div class="content">
+{{ csrf_field() }}
   <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
@@ -74,7 +75,7 @@
                       </label>
                     </div>
                   </td>
-                  <td ><a href="" data-toggle="modal" data-target="#myModal{{$list['id']}}" onclick="allocaRole({{$list['id']}})">查看</a>
+                  <td ><a href="" data-toggle="modal" data-target="#myModal{{$list['id']}}" onclick="userRole({{$list['id']}})">查看</a>
                   <div class="modal fade" id="myModal{{$list['id']}}" tabindex="-1" role="dialog" aria-labelledby="myModal{{$list['id']}}Label" aria-hidden="true">
                     <div class="modal-dialog">
                       <div class="modal-content">
@@ -87,15 +88,16 @@
                         <div class="modal-body">
                             <div class="row">
                               <div class="col-sm-12 checkbox-radios">
-                                <form action="" id="roleForm{{$list['id']}}">
-                              
-                              </form>
+                                <form action="haha" id="roleForm{{$list['id']}}">
+                                  
+                                </form>
                               </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-link">Nice Button</button>
-                          <button type="button" class="btn btn-danger btn-link" data-dismiss="modal">Close</button>
+                          <!-- <button type="button" class="btn btn-link">Nice Button</button> -->
+                          <button type="button" class="btn btn-danger btn-link" data-dismiss="modal" id="cacelRole" onclick="cacelRole({{$list['id']}})">取消</button>
+                          <button type="button" class="btn btn-success btn-link" data-dismiss="modal" onclick="allocaRole({{$list['id']}})">提交</button>
                         </div>
                       </div>
                     </div>
@@ -134,7 +136,7 @@
 
 <script>
 
-function allocaRole(id)
+function userRole(id)
 {
   let apiUrl = 'role/'+id;
    $.get(apiUrl, '', function (data) 
@@ -158,6 +160,34 @@ function allocaRole(id)
       })
       $('#roleForm'+id).append(content);
    });
+}
+
+function cacelRole(id)
+{
+  $('#roleForm'+id+'>div').remove();
+}
+
+function allocaRole(id)
+{
+  let apiUrl   = 'assignRoles/'+id;
+  let roleId   = $('#roleForm'+id).find(':checkbox:checked');
+  let roleColl = new Array();
+  $.each(roleId, function(i,item) {
+    // console.log(i);
+    // console.log(item.value);
+    roleColl.push(item.value);
+  });
+  console.log(roleColl);
+  let postData = {
+    'roleId' : roleColl,
+    '_token' : $('input:hidden').val()
+  };
+  console.log(postData);
+  //提交
+  $.post(apiUrl, postData, function (data) {
+      console.log(data);
+  });
+  $('#roleForm'+id+'>div').remove();
 }
 </script>
 
