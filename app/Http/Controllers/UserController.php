@@ -21,7 +21,6 @@ class UserController extends Controller
 
     public function add(Request $request)
     {
-
         if ($request->isMethod('post')) 
         {
             $data = $request->all();
@@ -48,9 +47,26 @@ class UserController extends Controller
 
     public function edit($id, Request $request)
     {
-        $data = User::with(['roles'])->where('id',$id)->get();
+        if ($request->isMethod('post')) 
+        {
+        } else 
+        {
+            $data = User::with(['roles'])->where('id',$id)->first()->toArray();
+            $roleId = array_column($data['roles'],'id');
+            $roles = Role::get();
 
-        return view('user.edit',['data'=>$data]);
+            foreach ($roles as $key => $value) 
+            {
+                $roles[$key]['check'] = "-1";
+                if (in_array($value['id'], $roleId))
+                {
+                    $roles[$key]['check'] = "1";
+                }
+            }
+
+            return view('user.edit',['data'=>$data,'roles'=>$roles]);
+            }
+
     }
 
     public function delete($id)

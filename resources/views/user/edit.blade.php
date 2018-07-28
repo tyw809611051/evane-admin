@@ -18,7 +18,7 @@
 		              <label class="col-sm-2 col-form-label" >名称</label>
 		              <div class="col-sm-7">
 		                <div class="form-group">
-		                  <input class="form-control" id="user-name" type="text" name="name" maxLength="30" required="true" placeholder="请填写用户名称" autocomplete="off" />
+		                  <input class="form-control" id="user-name" type="text" name="name" maxLength="30" required="true" placeholder="请填写用户名称" autocomplete="off" value="{{$data['name']}}" />
 		                  
 		                </div>
 		              </div>
@@ -28,7 +28,7 @@
 		              <label class="col-sm-2 col-form-label">邮箱</label>
 		              <div class="col-sm-7">
 		                <div class="form-group">
-		                  <input class="form-control" id="user-email" type="email" name="email"   placeholder="不超过20个字"  autocomplete="off"/>
+		                  <input class="form-control" id="user-email" type="email" name="email"   placeholder="不超过20个字"  autocomplete="off" value="{{$data['email']}}" />
 		                </div>
 		              </div>
 		        
@@ -39,9 +39,13 @@
 		              <div class="col-sm-7">
 		                <div class="form-group">
 		                	<select class="selectpicker" multiple id="user-role" name="role" data-style="btn-success">
-		                	<!-- @foreach($roles as $role)
-							  <option value="{{$role['id']}}">{{$role['name']}}</option>
-							@endforeach -->
+		                	@foreach($roles as $role)
+							  <option value="{{$role['id']}}" 
+								@if ($role['check'] == "1")
+									selected 
+								@endif
+							  >{{$role['name']}}</option>
+							@endforeach
 							</select>
 		                </div>
 		              </div>
@@ -52,7 +56,7 @@
 		              <label class="col-sm-2 col-form-label">原始密码</label>
 		              <div class="col-sm-7">
 		                <div class="form-group">
-		                  <input class="form-control" id="user-password" type="text" name="password"   placeholder="不超过20个字"  autocomplete="off"/>
+		                  <input class="form-control" id="user-old-password" type="text" name="oldPassword"   placeholder="不超过20个字"  autocomplete="off"/>
 		                </div>
 		              </div>
 		        
@@ -62,7 +66,7 @@
 		              <label class="col-sm-2 col-form-label">新密码</label>
 		              <div class="col-sm-7">
 		                <div class="form-group">
-		                  <input class="form-control" id="user-review-password" type="text" name="reviewPassword"  placeholder="不超过20个字"  autocomplete="off"/>
+		                  <input class="form-control" id="user-reset-password" type="text" name="resetPassword"  placeholder="不超过20个字"  autocomplete="off"/>
 		                </div>
 		              </div>
 		        
