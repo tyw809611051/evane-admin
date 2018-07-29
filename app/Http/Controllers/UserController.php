@@ -84,7 +84,7 @@ class UserController extends Controller
             }
 
             return view('user.edit',['data'=>$data,'roles'=>$roles]);
-            }
+        }
 
     }
 

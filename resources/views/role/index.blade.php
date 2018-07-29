@@ -1,5 +1,13 @@
 @extends('layouts.app')
+@section('stylesheet')
+@parent
 
+<style>
+  .form-check .form-check-label span {
+    top : 10px;
+  }
+</style>
+@stop
 @section('content')
 <div class="content">
   <div class="container-fluid">
@@ -70,12 +78,40 @@
                     </div>
                   </td>
 
-                  <td><a href="">查看</a></td>
+                  <td>
+                  <a href="" data-toggle="modal" data-target="#myModal{{$list['id']}}" onclick="rolePermission({{$list['id']}})">查看</a>
+                  <div class="modal fade" id="myModal{{$list['id']}}" tabindex="-1" role="dialog" aria-labelledby="myModal{{$list['id']}}Label" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">分配权限</h4>
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <i class="material-icons">clear</i>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                              <div class="col-sm-12 checkbox-radios">
+                                <form action="" id="permissionForm{{$list['id']}}">
+                                  
+                                </form>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                          <!-- <button type="button" class="btn btn-link">Nice Button</button> -->
+                          <button type="button" class="btn btn-danger btn-link" data-dismiss="modal" id="cacelRole" onclick="cacelRole({{$list['id']}})">取消</button>
+                          <button type="button" class="btn btn-success btn-link" data-dismiss="modal" onclick="allocaRole({{$list['id']}})">提交</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </td>
                   <td class="text-right">{{$list['created_at']}}</td>
                   <td class="text-right">
                     <!-- <a href="#" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a> -->
                     <a href="{{url('role/edit',['id'=>$list['id']])}}" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
-                    <a href="javascript:false;" class="btn btn-link btn-danger btn-just-icon remove" id="feature-del" data-id="{{$list['id']}}" onclick="del({{$list['id']}});" ><i class="material-icons">close</i></a>
+                    <a href="javascript:false;" class="btn btn-link btn-danger btn-just-icon remove" id="evane-del-{{$list['id']}}" data-id="{{$list['id']}}" onclick="del({{$list['id']}});" ><i class="material-icons">close</i></a>
                   </td>
                 </tr>
                 @endforeach
@@ -102,8 +138,59 @@
 <script src="{{ asset('js/sweetalert2.js') }}" type="text/javascript"></script>
 
 <script>
+function rolePermission(id)
+{
+  let apiUrl = 'permission/'+id;
+   $.get(apiUrl, '', function (data) 
+   {
+      let content = '';
+      $.each(data.data,function(i,item) {
+          
+          choice = '';
+          if (item['checked'] == "1")
+          {
+              choice = 'checked';
+          }
+          content += '<div class="form-check form-check-inline">'+
+                        '<label class="form-check-label">'+
+                          '<input class="form-check-input" type="checkbox" value='+item['id']+' '+choice+'> '+item['display_name']+
+                          '<span class="form-check-sign">'+
+                            '<span class="check"></span>'+
+                          '</span>'+
+                        '</label>'+
+                      '</div>'
+      })
+      $('#permissionForm'+id).append(content);
+   });
+}
 
+function cacelRole(id)
+{
+  $('#permissionForm'+id+'>div').remove();
+}
 
+function allocaPermission(id)
+{
+  let apiUrl   = 'assignPermissions/'+id;
+  let roleId   = $('#permissionForm'+id).find(':checkbox:checked');
+  let roleColl = new Array();
+  $.each(roleId, function(i,item) {
+    // console.log(i);
+    // console.log(item.value);
+    roleColl.push(item.value);
+  });
+  console.log(roleColl);
+  let postData = {
+    'roleId' : roleColl,
+    '_token' : $('input:hidden').val()
+  };
+  console.log(postData);
+  //提交
+  $.post(apiUrl, postData, function (data) {
+      console.log(data);
+  });
+  $('#permissionForm'+id+'>div').remove();
+}
 </script>
 
 @stop

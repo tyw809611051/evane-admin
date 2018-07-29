@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use App\Role;
 use App\User;
+use App\Permission;
 
 class RoleController extends Controller
 {
@@ -67,10 +68,10 @@ class RoleController extends Controller
             $list    = [];
 
             $list    = [
-                'name' => $role['name'],
+                'name'         => $role['name'],
                 'display_name' => $role['display'],
-                'desc' => $role['desc'],
-                'status' => $role['status']
+                'desc'         => $role['desc'],
+                'status'       => $role['status']
             ];
             $rs = Role::where('id',$id)->update($list);
 
@@ -78,12 +79,28 @@ class RoleController extends Controller
             {
                 return error('55001','更新失败');
             }
+            //更新权限关系
+            $roleModel = Role::find($id);
+            $roleModel->permissions()->detach();
+            $roleModel->permissions()->attach($role['permission']);
             return success($id,'更新成功');
         } else 
         {
-            $data = Role::where('id',$id)->first();
 
-            return view('role.edit',['data'=>$data]);
+            $data          = Role::with(['permissions'])->where('id',$id)->first()->toArray();
+            $permissionsId = array_column($data['permissions'],'id');
+            $permissions   = Permission::get();
+
+            foreach ($permissions as $key => $value) 
+            {
+                $permissions[$key]['check'] = "-1";
+                if (in_array($value['id'], $permissionsId))
+                {
+                    $permissions[$key]['check'] = "1";
+                }
+            }
+
+            return view('role.edit',['data'=>$data,'permissions'=>$permissions]);
         }
     
     }
@@ -117,5 +134,36 @@ class RoleController extends Controller
             return error('55001','修改失败');
         }
         return success($rs,'修改成功');
+    }
+
+    public function permission($id,Request $request)
+    {
+        $rolePermission = Role::find($id)->permissions()->get()->toArray();
+        $rpId = array_column($rolePermission,'id');
+
+        $permissions  = Permission::get();
+
+        foreach($permissions as $k => $v)
+        {
+            $permissions[$k]['checked'] = "-1";
+
+            if (in_array($v['id'], $rpId))
+            {
+                $permissions[$k]['checked'] = "1";
+            }
+        }
+        return success($permissions);
+
+    }
+
+    public function assignPermissions($id, Request $request)
+    {
+        $permissionIds   = $request->post('permissionId');
+        $roleModel = Role::find($id);
+
+        $roleModel->permissions()->detach();
+        $rs        = $roleModel->permissions()->attach($permissionIds);
+
+        return success('ok','添加成功');
     }
 }

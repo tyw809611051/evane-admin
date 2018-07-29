@@ -61,6 +61,8 @@ Route::group([
 	Route::match(['get', 'post'], 'edit/{id}','RoleController@edit');
 	Route::get('delete/{id}','RoleController@delete');
 	Route::get('changeStatus','RoleController@changeStatus');
+	Route::get('permission/{id}','RoleController@permission');
+	Route::post('assignPermissions/{id}','UserController@assignPermissions');
 });
 
 //权限管理

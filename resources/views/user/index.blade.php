@@ -141,6 +141,7 @@ function userRole(id)
   let apiUrl = 'role/'+id;
    $.get(apiUrl, '', function (data) 
    {
+      console.log(data);
       let content = '';
       $.each(data.data,function(i,item) {
           

@@ -64,6 +64,24 @@
 		        
 		            </div>
 
+		            <div class="row">
+		              <label class="col-sm-2 col-form-label">权限</label>
+		              <div class="col-sm-7">
+		                <div class="form-group">
+		                	<select class="selectpicker" multiple id="role-permission" name="role" data-style="btn-success">
+		                	@foreach($permissions as $permission)
+							  <option value="{{$permission['id']}}" 
+								@if ($permission['check'] == "1")
+									selected 
+								@endif
+							  >{{$permission['name']}}</option>
+							@endforeach
+							</select>
+		                </div>
+		              </div>
+		        
+		            </div>
+
 		          </div>
 		          <div class="card-footer ml-auto mr-auto">
 		            <button type="submit" class="btn btn-rose" id="content-submit">更新</button>
@@ -82,7 +100,7 @@
 @parent
 <script src="{{ asset('js/jquery.validate.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/sweetalert2.js') }}" type="text/javascript"></script>
-
+<script src="{{ asset('js/bootstrap-selectpicker.js') }}" type="text/javascript"></script>
 <script>
 
 $('#role').validate({
@@ -115,14 +133,15 @@ $('#role').validate({
 			status = 1;
 		}
 		let postData = {
-			'name' : $('#role-name').val(),
+			'name' 	  : $('#role-name').val(),
 			'display' : $('#role-display').val(),
-			'desc' : $('#role-desc').val(),
-			'status' : status,
-			'_token' : $('input:hidden').val()
+			'desc' 	  : $('#role-desc').val(),
+			'status'  : status,
+			'permission' : $('#role-permission').val(),
+			'_token'  : $('input:hidden').val()
 		};
-		let apiUrl  = $('#feature').data('id');
-	
+		let apiUrl  = $('#role').data('id');
+		console.log(postData);
 	  	$.post(apiUrl, postData, function (data) {
 	  	
 	  		if (data.error_code > 0)
