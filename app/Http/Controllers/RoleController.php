@@ -107,9 +107,9 @@ class RoleController extends Controller
 
     public function delete($id,Request $request)
     {
-        $rs = Role::where('id',$id)->delete();
-
-        if ($rs === false)
+        $urs = Role::find($id)->users()->detach();
+        $prs = Role::find($id)->permissions()->detach();
+        if ($rs === false || $prs == false)
         {
             return error('44002','删除失败');
         }
