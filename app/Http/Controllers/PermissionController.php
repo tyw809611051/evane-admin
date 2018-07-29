@@ -45,6 +45,44 @@ class PermissionController extends Controller
         }
 	}
 
+	public function edit($id, Request $request)
+	{
+		if ($request->isMethod('post'))
+		{
+			$permission = $request->all();
+    		$list    = [];
+
+    		$list    = [
+    			'name' => $permission['name'],
+    			'display_name' => $permission['display'],
+    			'desc' => $permission['desc'],
+    			'status' => $permission['status'],
+    		];
+    		$rs = Permission::where('id',$id)->update($list);
+
+    		if ($rs === false)
+    		{
+    			return error('55001','更新失败');
+    		}
+    		return success($id,'更新成功');
+		} else 
+		{
+			$data = Permission::find($id);
+			return view('permission.edit',['data'=>$data]);
+		}
+	}
+
+	public function delete($id, Request $request)
+	{
+		$rs = Permission::where('id',$id)->delete();
+
+    	if ($rs === false)
+    	{
+    		return error('44002','删除失败');
+    	}
+
+    	return success('','删除成功');
+	}
 	public function changeStatus(Request $request)
     {
         $status = $request->get('status');
