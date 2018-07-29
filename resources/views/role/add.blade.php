@@ -44,6 +44,20 @@
 		        
 		            </div>
 
+		            <div class="row">
+		              <label class="col-sm-2 col-form-label">权限</label>
+		              <div class="col-sm-7">
+		                <div class="form-group">
+		                	<select class="selectpicker" multiple id="role-permission" name="role" data-style="btn-success">
+		                	@foreach($permissions as $permission)
+							  <option value="{{$permission['id']}}">{{$permission['name']}}</option>
+							@endforeach
+							</select>
+		                </div>
+		              </div>
+		        
+		            </div>
+
 		          </div>
 		          <div class="card-footer ml-auto mr-auto">
 		            <button type="submit" class="btn btn-rose" id="content-submit">提交</button>
@@ -62,16 +76,18 @@
 @parent
 <script src="{{ asset('js/jquery.validate.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/sweetalert2.js') }}" type="text/javascript"></script>
-
+<script src="{{ asset('js/bootstrap-selectpicker.js') }}" type="text/javascript"></script>
 <script>
 
 $('#role').validate({
 	focusCleanup:true,
 	rules : {
 		name : 'required',
+		display : 'required'
 	},
 	messages : {
 		name : '名称不能为空',
+		display : '展示名称不能为空'
 	
 	},
 	errorPlacement: function(error, element) {
@@ -89,6 +105,7 @@ $('#role').validate({
 			'name' : $('#role-name').val(),
 			'display' : $('#role-display').val(),
 			'desc' : $('#role-desc').val(),
+			'permission' : $('#role-permission').val()
 			'_token' : $('input:hidden').val()
 		};
 	  	$.post('add', postData, function (data) {

@@ -32,31 +32,20 @@ class RoleController extends Controller
                 'desc'   => $data['desc']
             ];
 
-            $rs = Role::create($list);
+            $rsID = Role::insertGetId($list);
+
             if ($rs == false)
             {
                 return error(44001,'添加失败');
             }
-
+            $rModel = Role::find($rsID);
+            $rModel->permissions()->attach($data['permission']);
             return success('','添加成功');
         } else 
         {
-            return view('role.add');
+            $permissions   = Permission::get();
+            return view('role.add',['permissions'=>$permissions]);
         }
-        // $owner = new Role();
-        // $owner->name = 'owner';
-        // $owner->display_name = 'Project Owner';
-        // $owner->desc = 'User is the owner of a given project';
-        // $owner->save();
-
-        // $admin = new Role();
-        // $admin->name = 'admin';
-        // $admin->display_name = 'User Administrator';
-        // $admin->desc = 'User is allowed to manage and edit other users';
-        // $admin->save();
-        // 赋值权限
-       // $user =  User::where('name', '=', 'evane')->first();
-       // $rs = $user->roles()->attach(1);
 
     }
 
