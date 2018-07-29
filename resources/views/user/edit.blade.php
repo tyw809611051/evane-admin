@@ -56,7 +56,7 @@
 		              <label class="col-sm-2 col-form-label">原始密码</label>
 		              <div class="col-sm-7">
 		                <div class="form-group">
-		                  <input class="form-control" id="user-old-password" type="text" name="oldPassword"   placeholder="不超过20个字"  autocomplete="off"/>
+		                  <input class="form-control" id="user-old-password" type="text" name="oldPassword" data-user-id="{{$data['id']}}"  placeholder="不超过20个字"  autocomplete="off" />
 		                </div>
 		              </div>
 		        
@@ -99,20 +99,28 @@ $('#user').validate({
 		email : 'required',
 		password : 'required',
 		role : 'required',
-		reviewPassword : {
+		oldPassword : {
 			required : true,
-			equalTo:"#user-password"
+			remote : {
+				type : "GET",
+				url : "/user/checkPassword/"+$('#user-old-password').data('user-id')
+			}
+		},
+		resetPassword : {
+			required : true
 		}
 		
 	},
 	messages : {
 		name : '名称不能为空',
 		email : '邮箱不能为空',
-		password : '密码不能为空',
+		oldPassword : {
+			required : '密码不能为空',
+			remote   : '原始密码错误'
+		},
 		role : '角色不能为空',
-		reviewPassword : {
+		resetPassword : {
 			required : '确认密码不能为空',
-			equalTo:"密码不一致"
 		}
 	},
 	errorPlacement: function(error, element) {
@@ -126,14 +134,15 @@ $('#user').validate({
 	},
 	submitHandler: function(form)
 	{
+		let apiUrl   = $('#user-old-password').data('user-id');
 		let postData = {
 			'name' : $('#user-name').val(),
 			'email' : $('#user-email').val(),
 			'role' : $('#user-role').val(),
-			'password' : $('#user-password').val(),
+			'resetPassword' : $('#user-reset-password').val(),
 			'_token' : $('input:hidden').val()
 		};
-	  	$.post('add', postData, function (data) {
+	  	$.post(apiUrl, postData, function (data) {
 	  		console.log(data);
 	  		if (data.error_code > 0)
 	  		{
@@ -153,7 +162,7 @@ $('#user').validate({
 	                confirmButtonClass: "btn btn-success",
 	                type: "success"
 	            }).then(function() {
-	            	window.location.href="index";
+	            	window.location.href="/user/index";
 	            })
 	  		}
 	  	});

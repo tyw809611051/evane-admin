@@ -49,6 +49,25 @@ class UserController extends Controller
     {
         if ($request->isMethod('post')) 
         {
+            $password = $request->post('resetPassword','');
+            $name     = $request->post('name','');
+            $email    = $request->post('email','');
+            $role     = $request->post('role','');
+
+            $user     = User::find($id);
+            $user->name = $name;
+            $user->email = $email;
+            $user->password = bcrypt($password);
+            $urs = $user->save();
+
+            if ($urs == false)
+            {
+                return error(55002,'更新失败');
+            }
+            //更新角色关系
+            $user->roles()->detach();
+            $user->roles()->attach($role);
+            return success('ok','更新成功');
         } else 
         {
             $data = User::with(['roles'])->where('id',$id)->first()->toArray();
@@ -176,4 +195,21 @@ class UserController extends Controller
 
         return success('ok','添加成功');
     } 
+
+    /*
+     * 验证密码
+    */
+    public function checkPassword($id,Request $request)
+    {
+        $oldPassword = $request->get('oldPassword','');
+        $password = User::where('id',$id)->value('password');
+
+        if (!\Hash::check($oldPassword,$password))
+        {
+            return "false";
+        }
+
+        return "true";
+    }
+
 }

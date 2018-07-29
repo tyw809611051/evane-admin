@@ -87,6 +87,7 @@ Route::group([
 	Route::get('changeStatus','UserController@changeStatus');
 	Route::get('role/{id}','UserController@role');
 	Route::post('assignRoles/{id}','UserController@assignRoles');
+	Route::get('checkPassword/{id}','UserController@checkPassword');
 });
 
 Route::match(['get', 'post'], '/login','UserController@login')->name('login');

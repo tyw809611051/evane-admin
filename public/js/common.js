@@ -46,6 +46,7 @@ function changeDataStatus(id,status) {
 
 //删除按钮
 function del(id) {
+  let apiUrl = 'delete/'+$('#evane-del-'+id).data('id');
    swal({
       title: '确定删除?',
       type: 'warning',
@@ -56,7 +57,7 @@ function del(id) {
       cancelButtonText: '取消',
       buttonsStyling: false
   }).then(function() {
-    let apiUrl = 'delete/'+$('#feature-del').data('id');
+    
     console.log(apiUrl);
     $.get(apiUrl, '', function (data) {
         console.log(data);
@@ -77,7 +78,7 @@ function del(id) {
                   confirmButtonClass: "btn btn-success",
                   type: "success"
               }).then(function() {
-                // window.location.href="index";
+                location.reload();
               })
         }
       });
