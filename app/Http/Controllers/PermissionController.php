@@ -76,6 +76,7 @@ class PermissionController extends Controller
 	{
 		$rs = Permission::where('id',$id)->delete();
 
+
     	if ($rs === false)
     	{
     		return error('44002','删除失败');
