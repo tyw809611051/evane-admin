@@ -58,7 +58,7 @@
                     </ul>
                 </div>
             </li>
-            @role('admin')
+            
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#commentExamples">
                     <i class="material-icons">comment</i>
@@ -78,7 +78,7 @@
                     </ul>
                 </div>
             </li>
-            @endrole
+            
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#messageExamples">
                     <i class="material-icons">message</i>
@@ -118,7 +118,7 @@
                     </ul>
                 </div>
             </li>
-
+            
             <li class="nav-item ">
                 <a class="nav-link" data-toggle="collapse" href="#aboutExamples">
                     <i class="material-icons">bubble_chart</i>

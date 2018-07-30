@@ -7,7 +7,7 @@
         <!--      Wizard container        -->
         <div class="wizard-container">
         <div class="card card-wizard" data-color="green" id="wizardProfile">
-            <form action="add" method="post"  id="article">
+            <form action="add" method="post"  id="article" onsubmit="return evaneValidate();">
             <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
             <div class="card-header text-center">
                 <h3 class="card-title">
@@ -153,7 +153,7 @@
                 </div>
                 <div class="ml-auto">
                 <input type="button" class="btn btn-next btn-fill btn-rose btn-wd" name="next" value="下一步" id="nextButton">
-                <input type="submit" class="btn btn-finish btn-fill btn-rose btn-wd submit"  value="完成" style="display: none;">
+                <input type="submit" class="btn btn-finish btn-fill btn-rose btn-wd"  value="完成" style="display: none;">
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -198,128 +198,11 @@
   });
 </script>
 <script>
-$(function(){
-   $('#article').validate({
-    focusCleanup:true,
-    rules : {
-        
-        abctitle : 'required',
-        abctag   : 'required'
-    },
-    messages : {
-        abctitle : '标题不能为空',
-        abctag   : '标签不能为空'
-    },
-    errorPlacement: function(error, element) {
-    // Append error within linked label
-        console.log(error);
-        error.appendTo(element.parent());  
-    },
-    errorElement: "span",
-    errorClass : 'text-danger',
-    success:function(label) {
- console.log(label);
-    },
-    submitHandler: function(form)
-    {
-        let postData = {
-            'title' : $('#articleTitle').val(),
-            'author' : $('#articleAuthor').val(),
-            'excprt' : $('#articleExcprt').val(),
-            'category' : $('#categoryList').val(),
-            'picture' : new FormData($('#articlePicture')[0]),
-            'tag' : $('#articleTag').val(),
-            // 'content' : $('#articleContent').val(),
-            '_token' : $('input[name=_token]').val()
-        };
-
-        $.post('add', postData, function (data) {
-            console.log(data);
-            // if (data.error_code > 0)
-            // {
-            //     swal({
-            //         title: data.msg,
-            //         // text: "I will close in 2 seconds.",
-            //         timer: 2000,
-            //         showConfirmButton: false
-            //     })
-            // }
-
-            // if (data.error_code == 0)
-            // {
-            //     swal({
-            //         title: data.msg,
-            //         buttonsStyling: false,
-            //         confirmButtonClass: "btn btn-success",
-            //         type: "success"
-            //     }).then(function() {
-            //         window.location.href="index";
-            //     })
-            // }
-        });
-    }
-
-}); 
-})
-$('#nextButton').validate({
-    focusCleanup:true,
-    rules : {
-        abctitle : 'required',
-        abctag   : 'required'
-    },
-    messages : {
-        abctitle : '标题不能为空',
-        abctag   : '标签不能为空'
-    },
-    errorPlacement: function(error, element) {
-    // Append error within linked label
-        error.appendTo(element.parent());  
-    },
-    errorElement: "span",
-    errorClass : 'text-danger',
-    success:function(label) {
-
-    },
-    submitHandler: function(form)
-    {
-        let postData = {
-            'title' : $('#articleTitle').val(),
-            'author' : $('#articleAuthor').val(),
-            'excprt' : $('#articleExcprt').val(),
-            'category' : $('#categoryList').val(),
-            'picture' : new FormData($('#articlePicture')[0]),
-            'tag' : $('#articleTag').val(),
-            // 'content' : $('#articleContent').val(),
-            '_token' : $('input[name=_token]').val()
-        };
-
-        $.post('add', postData, function (data) {
-            console.log(data);
-            // if (data.error_code > 0)
-            // {
-            //     swal({
-            //         title: data.msg,
-            //         // text: "I will close in 2 seconds.",
-            //         timer: 2000,
-            //         showConfirmButton: false
-            //     })
-            // }
-
-            // if (data.error_code == 0)
-            // {
-            //     swal({
-            //         title: data.msg,
-            //         buttonsStyling: false,
-            //         confirmButtonClass: "btn btn-success",
-            //         type: "success"
-            //     }).then(function() {
-            //         window.location.href="index";
-            //     })
-            // }
-        });
-    }
-
-});
+function evaneValidate()
+{
+    console.log(1);
+    return false;
+}
 
 </script>
 

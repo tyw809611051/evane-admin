@@ -80,7 +80,7 @@ Route::group([
 //用户管理
 Route::group([
 	'prefix' => '/user',
-	'middleware' => ['auth','role:system']
+	'middleware' => ['auth']
 	],function(){
 	Route::get('index','UserController@index');
 	Route::match(['get', 'post'], 'add','UserController@add');
