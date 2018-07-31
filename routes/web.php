@@ -69,6 +69,15 @@ Route::group([
 	Route::get('delete/{id}','CommentController@delete');
 });
 
+//用户管理
+Route::group([
+	'prefix' => '/member',
+	'middleware' => 'auth'
+	],function(){
+	Route::get('index','MemberController@index');
+	Route::get('delete/{id}','MemberController@delete');
+});
+
 //角色管理
 Route::group([
 	'prefix' => '/role',
