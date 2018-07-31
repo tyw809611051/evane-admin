@@ -58,7 +58,15 @@ Route::group([
 	],function(){
 	Route::get('index','MessageController@index');
 	Route::get('delete/{id}','MessageController@delete');
-	Route::get('changeStatus','MessageController@changeStatus');
+});
+
+//评论管理
+Route::group([
+	'prefix' => '/comment',
+	'middleware' => 'auth'
+	],function(){
+	Route::get('index','CommentController@index');
+	Route::get('delete/{id}','CommentController@delete');
 });
 
 //角色管理

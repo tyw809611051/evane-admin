@@ -38,6 +38,7 @@
                   <th>内容</th>
                   <th>联系方式</th>
                   <th>用户</th>
+                  <th>路径</th>
                   <th class="text-right">创建时间</th>
                   <th class="disabled-sorting text-right">操作</th>
                 </tr>
@@ -58,6 +59,7 @@
                       匿名
                     @endif
                   </td>
+                  <td>{{$list['route']}}</td>
                   <td class="text-right">{{$list['created_at']}}</td>
                   <td class="text-right">
                     <!-- <a href="#" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a> -->

@@ -34,10 +34,11 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>名称</th>
-                  <th>描述</th>
+                  <th>内容</th>
+                  <th>父评论</th>
+                  <th>文章标题</th>
+                  <th>用户</th>
                   <th>状态</th>
-                  <th>排序</th>
                   <th class="text-right">创建时间</th>
                   <th class="disabled-sorting text-right">操作</th>
                 </tr>
@@ -46,8 +47,21 @@
               @foreach($lists as $list )
                 <tr data-id="{{$list['id']}}" data-status="">
                   <td>{{$list['id']}}</td>
-                  <td>{{$list['name']}}</td>
-                  <td>{{$list['desc']}}</td>
+                  <td>{{$list['content']}}</td>
+                  <td>
+                    @if (empty($list['parent']))
+                      无
+                    @else
+                      {{$list['parent']['content']}}
+                    @endif
+                  </td>
+                  <td>
+                      {{$list['article']['title']}}
+
+                  </td>
+                  <td>
+                      {{$list['member']['name']}}
+                  </td>
                   <td>
                     <div class="togglebutton">
                       <label>
@@ -66,11 +80,10 @@
                       </label>
                     </div>
                   </td>
-                  <td>{{$list['sort']}}</td>
                   <td class="text-right">{{$list['created_at']}}</td>
                   <td class="text-right">
                     <!-- <a href="#" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a> -->
-                    <a href="{{url('comment/edit',['id'=>$list['id']])}}" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
+                    <!-- <a href="{{url('comment/edit',['id'=>$list['id']])}}" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a> -->
                     <a href="javascript:false;" class="btn btn-link btn-danger btn-just-icon remove" id="evane-del-{{$list['id']}}" data-id="{{$list['id']}}" onclick="del({{$list['id']}});" ><i class="material-icons">close</i></a>
                   </td>
                 </tr>

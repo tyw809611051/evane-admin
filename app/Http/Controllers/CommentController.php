@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\Feature;
+use App\Model\Comment;
 
-class FeatureController extends Controller
+class CommentController extends Controller
 {
 	public function index(Request $request)
 	{
-		$list = Feature::paginate(10);
+		$list = Comment::with(['parent','article','member'])->paginate(10);
 
-		return view('feature.index',['lists'=>$list]);
+		return view('comment.index',['lists'=>$list]);
 	}
 
     //
@@ -19,14 +19,14 @@ class FeatureController extends Controller
     {
     	if ($request->isMethod('post')) 
     	{
-    		$feature = $request->all();
+    		$Comment = $request->all();
     		$list    = [];
 
     		$list    = [
-    			'name' => $feature['name'],
-    			'desc' => $feature['desc']
+    			'name' => $Comment['name'],
+    			'desc' => $Comment['desc']
     		];
-		    $model   = new Feature();
+		    $model   = new Comment();
 		    $rs      = $model->addAll($list);
 
 		    if ($rs === false)
@@ -37,42 +37,13 @@ class FeatureController extends Controller
 		    return success(0,'添加成功');
 		} else 
 		{
-			return view('feature.add');
+			return view('Comment.add');
 		}
-    }
-
-    public function edit($id,Request $request)
-    {
-    	if ($request->isMethod('post')) 
-    	{
-    		$feature = $request->all();
-    		$list    = [];
-
-    		$list    = [
-    			'name' => $feature['name'],
-    			'desc' => $feature['desc'],
-    			'status' => $feature['status'],
-    			'sort'   => $feature['sort']
-    		];
-    		$rs = Feature::where('id',$id)->update($list);
-
-    		if ($rs === false)
-    		{
-    			return error('55001','更新失败');
-    		}
-    		return success($id,'更新成功');
-    	} else 
-    	{
-    		$data = Feature::where('id',$id)->first();
-
-    		return view('feature.edit',['data'=>$data]);
-    	}
-    
     }
 
     public function delete($id,Request $request)
     {
-    	$rs = Feature::where('id',$id)->delete();
+    	$rs = Comment::where('id',$id)->delete();
 
     	if ($rs === false)
     	{
@@ -91,7 +62,7 @@ class FeatureController extends Controller
     		return error('44001','无ID参数');
     	}
 
-    	$rs = Feature::where('id',$id)->update(['status'=>$status]);
+    	$rs = Comment::where('id',$id)->update(['status'=>$status]);
 
     	if ($rs === false)
     	{
@@ -100,14 +71,4 @@ class FeatureController extends Controller
     	return success($rs,'修改成功');
     }
 
-    public function get(Request $request)
-    {
-        $data['status'] = $request->get('status',0);
-        $list = Feature::when($data['status'],function($query) use($data){
-            return $query->where('status',$data['status']);
-        })
-        ->get();
-
-        return success($list);
-    }
 }

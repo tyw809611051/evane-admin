@@ -6,30 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class Comment extends Model
+class Member extends Model
 {
     //
-    protected $table = 'comment';
+    protected $table = 'member';
 
     protected $fillable = [
-        'content','parent_id','article_id','member_id'
+        'name','password'
     ];
 
-
-    public function article()
-    {
-        return $this->hasOne('App\Model\Article','id','article_id');
-    }
-
-    public function member()
-    {
-        return $this->hasOne('App\Model\Member','id','member_id');
-    }
-
-    public function parent()
-    {
-        return $this->hasOne('App\Model\Comment','id','parent_id');
-    }
     
     public function addAll(array $data)
     {

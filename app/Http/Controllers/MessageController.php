@@ -17,7 +17,7 @@ class MessageController extends Controller
 
     public function delete($id,Request $request)
     {
-    	$rs = Feature::where('id',$id)->delete();
+    	$rs = Message::where('id',$id)->delete();
 
     	if ($rs === false)
     	{
