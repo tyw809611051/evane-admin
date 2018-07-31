@@ -51,6 +51,16 @@ Route::group([
 	Route::get('changeStatus','ArticleController@changeStatus');
 });
 
+//留言管理
+Route::group([
+	'prefix' => '/message',
+	'middleware' => 'auth'
+	],function(){
+	Route::get('index','MessageController@index');
+	Route::get('delete/{id}','MessageController@delete');
+	Route::get('changeStatus','MessageController@changeStatus');
+});
+
 //角色管理
 Route::group([
 	'prefix' => '/role',
