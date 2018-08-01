@@ -26,7 +26,7 @@
                   <th>摘要</th>
                   <th>评论数</th>
                   <th>评论状态</th>
-                  <th class="disabled-sorting text-right">Actions</th>
+                  <th class="disabled-sorting text-right">操作</th>
                 </tr>
               </thead>
  <!--              <tfoot>
@@ -48,11 +48,11 @@
                       <img src="{{ asset('img/icon.jpg') }}" alt="...">
                     </div>
                   </td>
-                  <td>Vivian Harrell</td>
-                  <td>Financial Controller</td>
-                  <td>San Francisco</td>
-                  <td>62</td>
-                  <td>2009/02/14</td>
+                  <td>{{$list['title']}}</td>
+                  <td>{{$list['author']}}</td>
+                  <td>{{$list['excerpt']}}</td>
+                  <td>{{$list['comment_number']}}</td>
+                  <td>{{$list['comment_status']}}</td>
                   <td class="text-right">
                     <!-- <a href="#" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a> -->
                     <a href="#" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
