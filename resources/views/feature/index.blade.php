@@ -71,7 +71,7 @@
                   <td class="text-right">
                     <!-- <a href="#" class="btn btn-link btn-info btn-just-icon like"><i class="material-icons">favorite</i></a> -->
                     <a href="{{url('feature/edit',['id'=>$list['id']])}}" class="btn btn-link btn-warning btn-just-icon edit"><i class="material-icons">dvr</i></a>
-                    <a href="javascript:false;" class="btn btn-link btn-danger btn-just-icon remove" id="feature-del" data-id="{{$list['id']}}" onclick="del({{$list['id']}});" ><i class="material-icons">close</i></a>
+                    <a href="javascript:false;" class="btn btn-link btn-danger btn-just-icon remove" id="evane-del-{{$list['id']}}" data-id="{{$list['id']}}" onclick="del({{$list['id']}});" ><i class="material-icons">close</i></a>
                   </td>
                 </tr>
                 @endforeach
