@@ -41,7 +41,7 @@
                 </tr>
               </tfoot> -->
               <tbody>
-                
+                @foreach($lists as $list)
                 <tr>
                   <td>
                     <div class="img-container">
@@ -59,9 +59,10 @@
                     <a href="#" class="btn btn-link btn-danger btn-just-icon remove"><i class="material-icons">close</i></a>
                   </td>
                 </tr>
-
+              @endforeach
               </tbody>
             </table>
+            {{ $lists->links('layouts.page') }}
           </div>
         </div>
         <!-- end content-->

@@ -23,6 +23,11 @@ class Article extends Model
         return $this->hasOne('App\Model\Category','id','category_id');
     }
     
+    public function users()
+    {
+        return $this->hasOne('App\User','id','users_id');
+    }
+    
     public function addAll(array $data)
     {
     	try {

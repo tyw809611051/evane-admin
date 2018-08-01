@@ -13,8 +13,11 @@ class ArticleController extends Controller
 {
 	public function index(Request $request)
 	{
-		return view('article.index');
+		
+		$list = Article::with('users')->paginate(10);
+		return view('article.index',['lists'=> $list]);
 	}
+
     //
     public function add(Request $request)
     {
