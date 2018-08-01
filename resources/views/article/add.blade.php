@@ -7,7 +7,7 @@
         <!--      Wizard container        -->
         <div class="wizard-container">
         <div class="card card-wizard" data-color="green" id="wizardProfile">
-            <form action="add" method="post"  id="article" onsubmit="return evaneValidate();">
+            <form action="add" method="post"  id="article" enctype="multipart/form-data">
             <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
             <div class="card-header text-center">
                 <h3 class="card-title">
@@ -45,11 +45,13 @@
                             <span class="btn btn-rose btn-round btn-file">
                                 <span class="fileinput-new">选择图片</span>
                                 <span class="fileinput-exists">重选</span>
-                                <input type="file" name="picture" id="articlePicture" />
+                                <input type="file" name="picture" id="articlePicture" required />
                             </span>
                             <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> 删除</a>
                             </div>
+                            <span >图片必填</span>
                         </div>
+
                     </div>
 
                     <div class="col-sm-8 col-md-8 col-lg-8">
@@ -61,7 +63,7 @@
                         </div>
                         <div class="form-group">
                             <label for="articleTitle" class="bmd-label-floating">标题必填</label>
-                            <input type="text" class="form-control" id="articleTitle" name="abctitle" required >
+                            <input type="text" class="form-control" id="articleTitle" name="title" required >
                             {{ csrf_field() }}
                         </div>
                         </div>
@@ -73,7 +75,7 @@
                         </div>
                         <div class="form-group">
                             <label for="articleAuthor" class="bmd-label-floating">作者必填</label>
-                            <input type="text" class="form-control" id="articleAuthor" name="author" required>
+                            <input type="text" class="form-control" id="articleAuthor" name="author" required value="{{auth()->user()->name}}">
                         </div>
                         </div>
                         <div class="input-group form-control-lg">
@@ -84,7 +86,7 @@
                         </div>
                         <div class="form-group">
                             <label for="articleExcprt" class="bmd-label-floating">默认为文章前54字</label>
-                            <textarea class="form-control" aria-label="With textarea" id="articleExcprt" name="excprt"></textarea>
+                            <textarea class="form-control" aria-label="With textarea" id="articleExcprt" name="excerpt"></textarea>
                         </div>
                         </div>
 
@@ -125,7 +127,7 @@
 
                         <div class="bootstrap-tagsinput">  
                         
-                            <input type="text" value="" data-role="tagsinput" name="abctag" id="articleTag" class="form-control tagsinput" data-color="info" style="display: none;" required>
+                            <input type="text" value="" data-role="tagsinput" name="tag" id="articleTag" class="form-control tagsinput" data-color="info" style="display: none;" required>
                             <input type="text" placeholder="" class="form-control" size="4" style="position: absolute;left:-1000px;">
                         </div>
                         </div>
@@ -141,7 +143,7 @@
                     </div>
                     <div class="col-sm-12">
                         
-                        <textarea name="content" id="articleContent" cols="30" rows="100"></textarea>
+                        <textarea name="content" id="articleContent" cols="30" rows="100" required></textarea>
                     </div>
                     </div>
                 </div>
@@ -198,11 +200,51 @@
   });
 </script>
 <script>
-function evaneValidate()
-{
-    console.log(1);
-    return false;
-}
+// function evaneValidate()
+// {
+    
+//     // let postData = {
+//     //     'picture' : $('#articlePicture').val(),
+//     //     'title'   : $('#articleTitle').val(),
+//     //     'author'   : $('#articleAuthor').val(),
+//     //     'excprt'   : $('#articleExcprt').val(),
+//     //     'category'   : $('#categoryList').val(),
+//     //     'tag'   : $('#articleTag').val(),
+//     //     'content'   : tinyMCE.activeEditor.getContent()
+//     // };
+//     let errorMsg = '';
+//     let picture = $('#articlePicture').val();console.log(picture);
+//     if (picture == "")
+//     {console.log(2);
+//         errorMsg = '<span class="text-danger">图片必须</span>';
+//         errorMsg.appendTo($('#articlePicture').parent());
+//         return false
+//     }
+//     return false;
+//     let title  = $('#articleTitle').val();
+//     if (!title)
+//     {
+//         errorMsg = '<span class="text-danger">标题必须</span>';
+//         errorMsg.appendTo($('#articleTitle').parent());
+//         return false;
+//     }
+//     let author = $('#articleAuthor').val();
+//     if (!author)
+//     {
+//         errorMsg = '<span class="text-danger">作者必须</span>';
+//         errorMsg.appendTo($('#articleTitle').parent());
+//         return false;
+//     }
+//     let content = tinyMCE.activeEditor.getContent();
+//     if (!content)
+//     {
+//         errorMsg = '<span class="text-danger">内容必须</span>';
+//         errorMsg.appendTo($('#articleTitle').parent());
+//         return false;
+//     }
+
+//     return false;
+// }
 
 </script>
 

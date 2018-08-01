@@ -7,7 +7,10 @@
             <div class="user-info">
                 <a data-toggle="collapse" href="#collapseExample" class="username">
                     <span>
-                       静爷
+                       <!-- 静爷 -->
+                        @if(auth()->check())
+                            {{auth()->user()->name}}
+                        @endif
         
                     </span>
                 </a>

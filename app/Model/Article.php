@@ -12,7 +12,7 @@ class Article extends Model
     protected $table = 'article';
 
     protected $fillable = [
-        'title','picture','content','excerpt','author'
+        'title','picture','content','excerpt','author','users_id','tag','status','category_id'
     ];
 
     /*
@@ -20,7 +20,7 @@ class Article extends Model
     */
     public function category()
     {
-        return $this->hasMany('App\Model\Category');
+        return $this->hasOne('App\Model\Category','id','category_id');
     }
     
     public function addAll(array $data)
