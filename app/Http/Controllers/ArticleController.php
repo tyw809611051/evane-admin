@@ -13,7 +13,6 @@ class ArticleController extends Controller
 {
 	public function index(Request $request)
 	{
-		
 		$list = Article::with('users')->paginate(10);
 		return view('article.index',['lists'=> $list]);
 	}
@@ -29,7 +28,7 @@ class ArticleController extends Controller
 			$list = [
 				'title' => $data['title'],
 				'content' => $data['content'],
-				'excerpt' => $data['excerpt'],
+				'excerpt' => empty($data['excerpt']) ? '' : $data['excerpt'],
 				'users_id' => Auth::id(),
 				'status'   => -1,
 				'author'   => $data['author'],
