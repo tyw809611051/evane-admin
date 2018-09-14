@@ -5,6 +5,7 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use App\Events\FeatureEvent;
 
 class Feature extends Model
 {
@@ -12,9 +13,33 @@ class Feature extends Model
     protected $table = 'feature';
 
     protected $fillable = [
-        'name','desc'
+        'name',
+        'desc',
     ];
 
+    //注入
+    protected static function boot()
+    {
+        parent::boot();
+
+        //创建前
+        // static::creating(function ($model) {
+        //     if(!$model->sn) {
+        //         $model->sn = self::keyGen();
+        //     }
+        // });
+
+        // 修改
+        // static::updated(function($model){
+        //     event(new TaskEvent($model));// 触发事件
+        // });
+
+
+        // 创建后
+        static::created(function ($model) {
+            event(new FeatureEvent($model));// 触发事件
+        });
+    }
     /*
     *分类
     */

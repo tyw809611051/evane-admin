@@ -64,6 +64,24 @@ return [
             'retry_after' => 90,
         ],
 
+        'rabbitmq' => [
+    
+            'driver' => 'rabbitmq',
+        
+            'dsn' => env('RABBITMQ_DSN', null),
+            'queue' => env('RABBITMQ_QUEUE','default'),
+            /*
+             * Could be one a class that implements \Interop\Amqp\AmqpConnectionFactory for example:
+             *  - \EnqueueAmqpExt\AmqpConnectionFactory if you install enqueue/amqp-ext
+             *  - \EnqueueAmqpLib\AmqpConnectionFactory if you install enqueue/amqp-lib
+             *  - \EnqueueAmqpBunny\AmqpConnectionFactory if you install enqueue/amqp-bunny
+             */
+             
+            'factory_class' => Enqueue\AmqpLib\AmqpConnectionFactory::class,
+
+        
+        ],
+
     ],
 
     /*

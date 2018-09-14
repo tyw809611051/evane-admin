@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Feature;
 
+use App\Library\Dingding;
+
 class FeatureController extends Controller
 {
 	public function index(Request $request)
 	{
 		$list = Feature::paginate(10);
-
+        $ding = new Dingding();
+        $ding->sendText('【询价单将到期提醒】');
 		return view('feature.index',['lists'=>$list]);
 	}
 
@@ -26,14 +29,14 @@ class FeatureController extends Controller
     			'name' => $feature['name'],
     			'desc' => $feature['desc']
     		];
-		    $model   = new Feature();
-		    $rs      = $model->addAll($list);
+		    // $model   = new Feature();
+		    $rs      = Feature::create($list);
 
 		    if ($rs === false)
 		    {
 		    	return error('44001','添加失败');
 		    }
-
+            
 		    return success(0,'添加成功');
 		} else 
 		{

@@ -217,7 +217,8 @@
         selector: '#articleContent',
         // mode : "textareas",
         // height: 500,
-        language:'zh_CN'
+        language:'zh_CN',
+
     });
   });
 </script>

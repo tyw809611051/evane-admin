@@ -119,6 +119,15 @@ Route::group([
 	Route::get('checkPassword/{id}','UserController@checkPassword');
 });
 
+//测试
+Route::group([
+                 'prefix' => '/task',
+                 'middleware' => ['auth']
+             ],function(){
+    Route::get('index','TaskController@index');
+    Route::get('send','TaskController@send');
+});
+
 Route::match(['get', 'post'], '/login','UserController@login')->name('login');
 Route::get('/logout','UserController@logout')->name('logout');
 
