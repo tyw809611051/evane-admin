@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Model\Feature;
-
+use Illuminate\Support\Facades\Log;
 use App\Library\Dingding;
 
 class FeatureController extends Controller
@@ -12,8 +12,8 @@ class FeatureController extends Controller
 	public function index(Request $request)
 	{
 		$list = Feature::paginate(10);
-        $ding = new Dingding();
-        $ding->sendText('【询价单将到期提醒】');
+//        $ding = new Dingding();
+//        $ding->sendText('【询价单将到期提醒】');
 		return view('feature.index',['lists'=>$list]);
 	}
 
@@ -57,9 +57,11 @@ class FeatureController extends Controller
     			'status' => $feature['status'],
     			'sort'   => $feature['sort']
     		];
-    		$rs = Feature::where('id',$id)->update($list);
+    		
+    		$model = Feature::find($id);
+             $rs   =  $model->update($list);
 
-    		if ($rs === false)
+    		if ($rs == false)
     		{
     			return error('55001','更新失败');
     		}

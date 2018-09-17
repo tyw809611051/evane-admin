@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\FeatureEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Log;
 
 class FeatureListener
 {
@@ -26,6 +27,8 @@ class FeatureListener
      */
     public function handle(FeatureEvent $event)
     {
-        info('feature tangyiwen');
+        $feature    = $event->feature;
+        $dataStatus = @$feature->dataStatus;
+        Log::info($dataStatus.json_encode($event));
     }
 }

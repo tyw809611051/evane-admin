@@ -124,8 +124,11 @@ Route::group([
                  'prefix' => '/task',
                  'middleware' => ['auth']
              ],function(){
+    //广播系统
     Route::get('index','TaskController@index');
     Route::get('send','TaskController@send');
+    //集合
+    Route::get('collect','TaskController@collect');
 });
 
 Route::match(['get', 'post'], '/login','UserController@login')->name('login');

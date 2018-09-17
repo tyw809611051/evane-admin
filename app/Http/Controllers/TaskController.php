@@ -27,4 +27,16 @@ class TaskController extends Controller
         $message->save();
         event(new NewMessageNotification($message));
     }
+    
+    /*
+     * 集合测试
+     * */
+    public function collect()
+    {
+        //创建新集合
+        $collection = collect([1,2,3]);
+        //返回底层数组
+        $c1         = $collection->all();
+        var_dump($c1);
+    }
 }

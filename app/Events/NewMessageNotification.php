@@ -12,7 +12,8 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
 use App\Messages;
-class NewMessageNotification implements ShouldBroadcastNow
+class NewMessageNotification
+//    implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
