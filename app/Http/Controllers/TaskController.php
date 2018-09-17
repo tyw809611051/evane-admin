@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Messages;
 use App\Events\NewMessageNotification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Queue;
+use App\Jobs\TestQueue;
 
 class TaskController extends Controller
 {
@@ -38,5 +40,16 @@ class TaskController extends Controller
         //返回底层数组
         $c1         = $collection->all();
         var_dump($c1);
+    }
+    
+    /*
+      * 队列测试
+      * */
+    public function queueRabbitmq()
+    {
+        $arr = [
+            'time' => time()
+        ];
+        TestQueue::dispatch($arr);
     }
 }
