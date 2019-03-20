@@ -181,6 +181,8 @@ return [
         Zizaco\Entrust\EntrustServiceProvider::class,
         // report
         App\Providers\ReportServiceProvider::class,
+        //html2pdf
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -233,6 +235,8 @@ return [
 
         //扩展
         'Entrust' => Zizaco\Entrust\EntrustFacade::class,
+        //html2pdf
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 
