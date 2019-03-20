@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Model\Feature;
 use Illuminate\Support\Facades\Log;
 use App\Library\Dingding;
+use App\Notifications\LoginNotice;
+use Carbon\Carbon;
+use App\User;
 
 class FeatureController extends Controller
 {
@@ -14,6 +17,13 @@ class FeatureController extends Controller
 		$list = Feature::paginate(10);
 //        $ding = new Dingding();
 //        $ding->sendText('【询价单将到期提醒】');
+        // 测试服务
+        // $api = app()->make('Report\Api');
+        // $res = $api->GET('/open/order');
+        // return success($res);die;
+        $userModel = new User();
+        $when = Carbon::now()->addMinutes(0.1);
+        $userModel->notify(new LoginNotice());
 		return view('feature.index',['lists'=>$list]);
 	}
 

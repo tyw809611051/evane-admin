@@ -179,6 +179,8 @@ return [
 
         //RBAC
         Zizaco\Entrust\EntrustServiceProvider::class,
+        // report
+        App\Providers\ReportServiceProvider::class,
 
     ],
 

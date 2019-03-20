@@ -8,6 +8,7 @@ use App\Events\NewMessageNotification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Queue;
 use App\Jobs\TestQueue;
+use App\Notifications\LoginNotice;
 
 class TaskController extends Controller
 {
@@ -51,5 +52,15 @@ class TaskController extends Controller
             'time' => time()
         ];
         TestQueue::dispatch($arr);
+    }
+    
+    /*
+      * 队列测试
+      * */
+    public function notice()
+    {
+        $msg = new Messages();
+        $notice = (new LoginNotice())->delay(5);
+        $msg->notify($notice);
     }
 }

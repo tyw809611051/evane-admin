@@ -4,19 +4,12 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Queue\InteractsWithQueue;
-use App\Library\Dingding;
-use App\Channels\DingTalkChanncel;
 
-class LoginNotice extends Notification implements ShouldQueue
+class Feature extends Notification
 {
-    // use Queueable;
-    use InteractsWithQueue;
-//    use Notifiable;
+    use Queueable;
 
     /**
      * Create a new notification instance.
@@ -36,9 +29,7 @@ class LoginNotice extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return [
-            DingTalkChanncel::class,
-            ];
+        return ['mail'];
     }
 
     /**
@@ -66,22 +57,5 @@ class LoginNotice extends Notification implements ShouldQueue
         return [
             //
         ];
-    }
-    
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toDingTalk($notifiable)
-    {
-        $ding = new Dingding('b26e392bbb8dd42f93b22a1b50c81639b0338bb38fbc65865f326bc4f358119c');
-        $text = "hello loging";
-        Log::info('tang');
-        return $ding->sendText($text);
-//        return [
-//            //
-//        ];
     }
 }

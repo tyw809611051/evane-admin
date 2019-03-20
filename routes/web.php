@@ -131,6 +131,8 @@ Route::group([
     Route::get('collect','TaskController@collect');
     //队列
     Route::get('queue','TaskController@queueRabbitmq');
+    //通知
+    Route::get('notice','TaskController@notice');
 });
 
 Route::match(['get', 'post'], '/login','UserController@login')->name('login');

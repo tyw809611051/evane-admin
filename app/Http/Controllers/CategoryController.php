@@ -9,7 +9,7 @@ use App\Model\Category;
 class CategoryController extends Controller
 {
 	public function index(Request $request)
-	{
+	{echo bcrypt(123456);die;
 		$feature = $request->get('feature','');
 		$list    = Category::when($feature,function($query) use($feature) {
 			return $query->where('feature_id',$feature);
