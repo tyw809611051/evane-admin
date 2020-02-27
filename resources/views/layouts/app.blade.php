@@ -149,6 +149,7 @@
                     document.write(new Date().getFullYear())
                 </script>, made with <i class="material-icons">favorite</i> by
                 <a href="" target="_blank">Evane</a> for back-stage management.
+                备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">京ICP备18032507号</a>
             </div>
         @show
         </div>
