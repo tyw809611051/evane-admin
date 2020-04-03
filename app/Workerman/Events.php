@@ -35,13 +35,13 @@ class Events
             case 'say':   #处理发送的聊天
                 $response['msg'] = 'Authentication failure';
                 $response['data'] = json_encode([$message->order_id, $message->type, $message->content, $message->user_id]);
-                $response['errcode'] = ERROR_CHAT;
+                $response['errcode'] = 400;
                 break;
             case 'chats':  #获取聊天列表
                 $response['data'] = ['chats' => $message->order_id];
                 break;
             default:
-                $response['errcode'] = ERROR_CHAT;
+                $response['errcode'] = 400;
                 $response['msg'] = 'Undefined';
         }
 

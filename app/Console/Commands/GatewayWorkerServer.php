@@ -80,6 +80,7 @@ class GatewayWorkerServer extends Command
                 'local_cert'    => '/usr/local/openresty/nginx/cert/3152340_www.evanetang.com.pem',
                 'local_pk'      => '/usr/local/openresty/nginx/cert/3152340_www.evanetang.com.key',
                 'verify_peer'   => false,
+                'allow_self_signed' => true
             ],
         ];
         $gateway = new Gateway("websocket://0.0.0.0:2346",$context);
