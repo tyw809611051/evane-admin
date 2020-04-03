@@ -75,7 +75,14 @@ class GatewayWorkerServer extends Command
     private function startGateWay()
     {
         Log::info('startGateWay');
-        $gateway = new Gateway("websocket://0.0.0.0:2346");
+        $context = [
+            'ssl' => [
+                'local_cert'    => '/usr/local/openresty/nginx/cert/3152340_www.evanetang.com.pem',
+                'local_pk'      => '/usr/local/openresty/nginx/cert/3152340_www.evanetang.com.key',
+                'verify_peer'   => false,
+            ],
+        ];
+        $gateway = new Gateway("websocket://0.0.0.0:2346",$context);
         $gateway->transport = 'ssl';
         $gateway->name                 = 'Gateway';                         #设置Gateway进程的名称，方便status命令中查看统计
         $gateway->count                = 1;                                 #进程的数量
