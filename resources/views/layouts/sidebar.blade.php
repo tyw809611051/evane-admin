@@ -233,5 +233,27 @@
                     </ul>
                 </div>
             </li>
+
+            <li class="nav-item ">
+                <a class="nav-link" data-toggle="collapse" href="#appExamples">
+                    <i class="material-icons">applications_examples</i>
+                    <p> 应用示例
+                        <b class="caret"></b>
+                    </p>
+                </a>
+
+                <div class="collapse" id="appExamples">
+                    <ul class="nav">
+                        <li class="nav-item @if (Request::path() == 'chat/index')
+                                active
+@endif">
+                            <a class="nav-link" href="{{url('chat/index')}}">
+                                <span class="sidebar-mini"> C </span>
+                                <span class="sidebar-normal"> 聊天室 </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
         </ul>
     </div>

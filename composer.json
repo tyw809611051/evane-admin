@@ -15,6 +15,9 @@
         "predis/predis": "^1.1",
         "pusher/pusher-php-server": "~3.0",
         "vladimir-yuldashev/laravel-queue-rabbitmq": "~6.0.0",
+        "workerman/gateway-worker": "^3.0",
+        "workerman/gatewayclient": "^3.0",
+        "workerman/workerman": "^4.0",
         "zizaco/entrust": "5.2.x-dev"
     },
     "require-dev": {
@@ -63,5 +66,11 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "optimize-autoloader": true
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://mirrors.aliyun.com/composer"
+        }
     }
 }
