@@ -76,6 +76,7 @@ class GatewayWorkerServer extends Command
     {
         Log::info('startGateWay');
         $gateway = new Gateway("websocket://0.0.0.0:2346");
+        $gateway->transport = 'ssl';
         $gateway->name                 = 'Gateway';                         #设置Gateway进程的名称，方便status命令中查看统计
         $gateway->count                = 1;                                 #进程的数量
         $gateway->lanIp                = '127.0.0.1';                       #内网ip,多服务器分布式部署的时候需要填写真实的内网ip
