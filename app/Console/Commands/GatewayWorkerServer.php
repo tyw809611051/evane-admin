@@ -84,7 +84,7 @@ class GatewayWorkerServer extends Command
         ];
         $gateway = new Gateway("websocket://0.0.0.0:2346",$context);
         $gateway->transport = 'ssl';
-        $gateway->name                 = 'Gateway';                         #设置Gateway进程的名称，方便status命令中查看统计
+        $gateway->name                 = 'Gatewaywork';                         #设置Gateway进程的名称，方便status命令中查看统计
         $gateway->count                = 1;                                 #进程的数量
         $gateway->lanIp                = '127.0.0.1';                       #内网ip,多服务器分布式部署的时候需要填写真实的内网ip
         $gateway->startPort            = 2300;                              #监听本机端口的起始端口
