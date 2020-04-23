@@ -135,6 +135,8 @@ Route::group([
     Route::get('notice','TaskController@notice');
 });
 
+//app
+Route::get('/chat/index','ChatController@index');
 Route::match(['get', 'post'], '/login','UserController@login')->name('login');
 Route::get('/logout','UserController@logout')->name('logout');
 
