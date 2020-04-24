@@ -102,7 +102,7 @@ class GatewayWorkerServer extends Command
     }
 
 }
-//ws = new WebSocket("ws://127.0.0.1:23460");
+//ws = new WebSocket("ws://127.0.0.1:2346");
 //ws.onopen = function() {
 //    ws . send('{"mode":"say","order_id":"21",type:1,"content":"文字内容","user_id":21}');
 //    ws . send('{"mode":"chats","order_id":"97"}');
