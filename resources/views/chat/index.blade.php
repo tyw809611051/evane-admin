@@ -183,14 +183,16 @@
 
             });
             // 连接服务器
-            ws = new WebSocket("ws://127.0.0.1:2346");
+
             $('#sendMsg').click(function () {
                 var enterword  = $('#enterWord').val();
                 if (enterword.length == 0) {
                     return false;
                 }
+                ws = new WebSocket("ws://127.0.0.1:2346");
                 ws.onopen = function() {
-                    ws . send('{"mode":"say","order_id":"21",type:1,"content":"'+ enterword +'","user_id":21}');
+                    var a = ws.send('{"mode":"say","order_id":"21",type:1,"content":"'+ enterword +'","user_id":21}');
+                    console.log(a);
                 };
                 $('#chatRecord').append(
                     '<div class="row justify-content-around">\n' +
