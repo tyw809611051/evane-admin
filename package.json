@@ -12,7 +12,10 @@
     "devDependencies": {
         "axios": "^0.17",
         "bootstrap": "^4.0.0",
+        "commitizen": "^4.1.2",
         "cross-env": "^5.1",
+        "cz-conventional-changelog": "^3.2.0",
+        "husky": "^4.2.5",
         "jquery": "^3.2",
         "laravel-mix": "^1.0",
         "lodash": "^4.17.4",
@@ -22,5 +25,10 @@
     "dependencies": {
         "bootstrap-material-design": "^4.1.1",
         "laravel-echo": "^1.4.0"
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
     }
 }
