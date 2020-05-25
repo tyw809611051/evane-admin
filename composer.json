@@ -18,7 +18,8 @@
         "workerman/gateway-worker": "^3.0",
         "workerman/gatewayclient": "^3.0",
         "workerman/workerman": "^4.0",
-        "zizaco/entrust": "5.2.x-dev"
+        "zizaco/entrust": "5.2.x-dev",
+        "elasticsearch/elasticsearch": "^7.2"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

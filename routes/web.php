@@ -122,7 +122,6 @@ Route::group([
 //测试
 Route::group([
                  'prefix' => '/task',
-                 'middleware' => ['auth']
              ],function(){
     //广播系统
     Route::get('index','TaskController@index');
@@ -133,6 +132,8 @@ Route::group([
     Route::get('queue','TaskController@queueRabbitmq');
     //通知
     Route::get('notice','TaskController@notice');
+    //es
+    Route::get('es','TaskController@es');
 });
 
 //app

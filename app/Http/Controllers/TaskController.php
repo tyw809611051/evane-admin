@@ -6,9 +6,12 @@ use Illuminate\Http\Request;
 use App\Messages;
 use App\Events\NewMessageNotification;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Queue;
 use App\Jobs\TestQueue;
 use App\Notifications\LoginNotice;
+use Elasticsearch\Client;
+use Elasticsearch\ClientBuilder;
 
 class TaskController extends Controller
 {
@@ -62,5 +65,33 @@ class TaskController extends Controller
         $msg = new Messages();
         $notice = (new LoginNotice())->delay(5);
         $msg->notify($notice);
+    }
+
+    public function es()
+    {
+        set_time_limit(0);
+        $client = ClientBuilder::create()->build();
+        DB::table('gb_log_quexin')->orderBy('id')->chunk(100,function ($quexin) use($client){
+           foreach ($quexin as $qu) {
+               $params['body'][] = [
+                   'index' => [
+                       '_index' => 'log_quexin',
+                   ]
+               ];
+
+               $params['body'][] = [
+                   'id'     => $qu->id,
+                   'level'  => $qu->level,
+                   'category' => $qu->category,
+                   'log_time' => $qu->log_time,
+                   'prefix'   => $qu->prefix,
+                   'message'  => $qu->message,
+               ];
+           }
+
+            $client->bulk($params);
+        });
+
+        return success('good');
     }
 }
