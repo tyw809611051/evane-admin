@@ -35,11 +35,13 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
+//        $this->mapWechatRoutes();
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
 
-        //
+        // 微信路由接口
+        $this->mapWechatRoutes();
     }
 
     /**
@@ -69,5 +71,20 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware('api')
              ->namespace($this->namespace)
              ->group(base_path('routes/api.php'));
+    }
+
+    /**
+     * Define the "wechat" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapWechatRoutes()
+    {
+        Route::prefix('wechat')
+//            ->middleware('wechat')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/wechat.php'));
     }
 }

@@ -183,6 +183,8 @@ return [
         App\Providers\ReportServiceProvider::class,
         //html2pdf
         Barryvdh\DomPDF\ServiceProvider::class,
+        // easywechat
+        Overtrue\LaravelWeChat\ServiceProvider::class,
 
     ],
 
@@ -237,7 +239,8 @@ return [
         'Entrust' => Zizaco\Entrust\EntrustFacade::class,
         //html2pdf
         'PDF' => Barryvdh\DomPDF\Facade::class,
-
+        // easywechat
+        'EasyWeChat' => Overtrue\LaravelWeChat\Facade::class,
     ],
 
 ];

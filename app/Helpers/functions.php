@@ -76,3 +76,21 @@ if (!function_exists('listToTree')) {
         return $tree;
     }
 }
+
+/**
+ * 判断是否在微信中打开
+ * @return array
+ * @return bool
+ * @author tangyw@sqqmall.com
+ */
+function is_weixin(){
+
+    if ( strpos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') !== false ) {
+
+        return true;
+
+    }
+
+    return false;
+
+}

@@ -141,7 +141,7 @@ Route::get('/chat/index','ChatController@index');
 Route::match(['get', 'post'], '/login','UserController@login')->name('login');
 Route::get('/logout','UserController@logout')->name('logout');
 
-Route::any('/{path?}',function ($path='/'){
-    return view('layouts.404');
-})->where('path','.*');
+//Route::any('/{path?}',function ($path='/'){
+//    return view('layouts.404');
+//})->where('path','.*');
 
