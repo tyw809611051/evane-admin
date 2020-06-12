@@ -45,16 +45,11 @@ class OfficialAccountController
                 echo $echostr;
                 exit;
             } else {
-                // 微信公众号不适用此规则
-//                if (!is_weixin()) {
-//                    throw new Exception('请在微信客户端中打开此链接',61001);
-//                }
+
                 // 公众号消息处理
                 $app = Factory::officialAccount(config('wechat.official_account.default'));
-                $message = (array)$app->server->getMessage();
+                $message = $app->server->getMessage();
 
-                // todo del
-                Log::info('userinfo '.json_encode(session('wechat.oauth_user.default')));
                 // 对消息进行处理
                 $app->server->push(function ($message) {
                     $type = strtolower($message['MsgType']);
@@ -65,11 +60,7 @@ class OfficialAccountController
                             break;
                         case 'text':
                             # 文字消息
-//                        $app->oauth->scopes(['snsapi_userinfo'])
-//                            ->setRequest($request)
-//                            ->redirect('admin/#/user/login');
-//                        Log::info('response消息: '.json_encode($response));
-                            return $message;
+                            return $message['Content'];
                             break;
                         case 'image':
                             # 图片消息
@@ -97,11 +88,10 @@ class OfficialAccountController
                 });
 
                 $reponse = $app->server->serve();
-                Log::info('res '.json_encode($reponse));
                 return $reponse;
             }
         } catch (Exception $e) {
-            Log::info('error '.json_encode($e->getMessage()));
+            Log::info('微信公众号接收消息错误： '.$e->getCode().'-'.$e->getMessage());
             return error($e->getCode(),$e->getMessage());
         }
 

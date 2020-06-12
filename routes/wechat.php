@@ -17,14 +17,14 @@ use Illuminate\Http\Request;
 Route::group([
     'namespace' => 'Wechat',
 ],function () {
-    Route::get('/official-account','OfficialAccountController@index');
+    Route::any('/official-account','OfficialAccountController@index');
 });
 // 需要验证的接口
 Route::group([
     'namespace' => 'Wechat',
     'middleware' => ['wechat.oauth']
 ],function () {
-    Route::post('/official-account','OfficialAccountController@index');
+
 });
 
 Route::any('/{path?}', function ($path = '/') {
