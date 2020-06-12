@@ -12,6 +12,8 @@ use App\Http\Controllers\Controller;
 use EasyWeChat\Factory;
 use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Support\Facades\Log;
+
 class OfficialAccountController
 {
 
@@ -43,17 +45,18 @@ class OfficialAccountController
                 echo $echostr;
                 exit;
             } else {
-                if (!is_weixin()) {
-                    throw new Exception('请在微信客户端中打开此链接',61001);
-                }
+                // 微信公众号不适用此规则
+//                if (!is_weixin()) {
+//                    throw new Exception('请在微信客户端中打开此链接',61001);
+//                }
                 // 公众号消息处理
                 $app = Factory::officialAccount(config('wechat.official_account.default'));
                 $message = (array)$app->server->getMessage();
 
                 // todo del
-                Log::info(json_encode(session('wechat.oauth_user.default')));
+                Log::info('userinfo '.json_encode(session('wechat.oauth_user.default')));
                 // 对消息进行处理
-                $app->server->push(function ($message) use ($app,$request) {
+                $app->server->push(function ($message) {
                     $type = strtolower($message['MsgType']);
                     switch ($type) {
                         case 'event':
@@ -94,10 +97,11 @@ class OfficialAccountController
                 });
 
                 $reponse = $app->server->serve();
-
+                Log::info('res '.json_encode($reponse));
                 return $reponse;
             }
         } catch (Exception $e) {
+            Log::info('error '.json_encode($e->getMessage()));
             return error($e->getCode(),$e->getMessage());
         }
 
