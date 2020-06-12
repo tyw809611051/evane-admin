@@ -69,7 +69,6 @@ class TaskController extends Controller
 
     public function es()
     {
-//        \Overtrue\LaravelWeChat\Middleware\OAuthAuthenticate::class
         set_time_limit(0);
         $client = ClientBuilder::create()->build();
         DB::table('gb_log_quexin')->orderBy('id')->chunk(100,function ($quexin) use($client){

@@ -50,6 +50,8 @@ class OfficialAccountController
                 $app = Factory::officialAccount(config('wechat.official_account.default'));
                 $message = (array)$app->server->getMessage();
 
+                // todo del
+                Log::info(json_encode(session('wechat.oauth_user.default')));
                 // 对消息进行处理
                 $app->server->push(function ($message) use ($app,$request) {
                     $type = strtolower($message['MsgType']);
