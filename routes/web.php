@@ -134,6 +134,9 @@ Route::group([
     Route::get('notice','TaskController@notice');
     //es
     Route::get('es','TaskController@es');
+    //back
+    Route::get('back','TaskController@back');
+    Route::get('front','TaskController@front');
 });
 
 //app

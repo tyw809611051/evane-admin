@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Messages;
 use App\Events\NewMessageNotification;
@@ -93,5 +94,22 @@ class TaskController extends Controller
         });
 
         return success('good');
+    }
+
+    public function front(Request $request) {
+
+        $data = $request->all();
+        Log::error('前端get方法： '.json_encode($data));
+        return view('home');
+
+    }
+    public function back(Request $request) {
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            Log::error('post方法： '.json_encode($data));
+        } else {
+            $data = $request->all();
+            Log::error('get方法： '.json_encode($data));
+        }
     }
 }
