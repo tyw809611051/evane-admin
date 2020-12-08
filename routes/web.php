@@ -135,8 +135,9 @@ Route::group([
     //es
     Route::get('es','TaskController@es');
     //back
-    Route::get('back','TaskController@back');
-    Route::get('front','TaskController@front');
+    Route::any('back','TaskController@back');
+    Route::any('front','TaskController@front');
+    Route::any('contract','TaskController@contract');
 });
 
 //app

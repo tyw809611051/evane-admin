@@ -106,10 +106,20 @@ class TaskController extends Controller
     public function back(Request $request) {
         if ($request->isMethod('post')) {
             $data = $request->all();
-            Log::error('post方法： '.json_encode($data));
+            Log::error('back-post方法： '.json_encode($data));
         } else {
             $data = $request->all();
-            Log::error('get方法： '.json_encode($data));
+            Log::error('back-get方法： '.json_encode($data));
+        }
+    }
+
+    public function contract(Request $request) {
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            Log::error('contract-post方法： '.json_encode($data));
+        } else {
+            $data = $request->all();
+            Log::error('contract-get方法： '.json_encode($data));
         }
     }
 }
