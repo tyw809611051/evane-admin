@@ -115,10 +115,10 @@ class TaskController extends Controller
 
     public function contract(Request $request) {
         if ($request->isMethod('post')) {
-            $data = $request->all();
-            Log::error('contract-post方法： '.json_encode($data));
+//            $data = $request->post("sysid");
+            Log::error('contract-post方法： '.json_encode($request->post()));
         } else {
-            $data = $request->all();
+            $data = $request->get("sysid");
             Log::error('contract-get方法： '.json_encode($data));
         }
     }

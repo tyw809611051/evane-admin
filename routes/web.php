@@ -123,6 +123,7 @@ Route::group([
 Route::group([
                  'prefix' => '/task',
              ],function(){
+    Route::match(['post', 'get'], 'contract','TaskController@contract');
     //广播系统
     Route::get('index','TaskController@index');
     Route::get('send','TaskController@send');
@@ -137,7 +138,9 @@ Route::group([
     //back
     Route::any('back','TaskController@back');
     Route::any('front','TaskController@front');
-    Route::any('contract','TaskController@contract');
+//    Route::get('contract','TaskController@contract');
+//    Route::post('contract','TaskController@contract');
+
 });
 
 //app
