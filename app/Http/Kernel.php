@@ -41,6 +41,7 @@ class Kernel extends HttpKernel
         'api' => [
             'throttle:60,1',
             'bindings',
+            'cors',
         ],
     ];
 
@@ -61,7 +62,9 @@ class Kernel extends HttpKernel
         'role'=>\Zizaco\Entrust\Middleware\EntrustRole::class,
         'permission'=>\Zizaco\Entrust\Middleware\EntrustPermission::class,
         'ability'=>\Zizaco\Entrust\Middleware\EntrustAbility::class,
+        'cors'=>\App\Http\Middleware\CrossHttp::class,
         # wechat
         'wechat.oauth' => \Overtrue\LaravelWeChat\Middleware\OAuthAuthenticate::class,
+        'api.auth' => \App\Http\Middleware\TokenAuth::class,
     ];
 }

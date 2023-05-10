@@ -9,8 +9,28 @@ if (!function_exists('success')) {
 
 }
 
+if (!function_exists('apiSuccess')) {
+
+    function apiSuccess($data = '', $msg = 'ok',$total = 0)
+    {
+        return response()->json(['code' => 0, 'msg' => $msg, 'data' => $data,'count'=>$total]);
+    }
+
+}
+
 if (!function_exists('error')) {
     function error($erroCode = 500, $msg = 'error', $data = '')
+    {
+        if (!$erroCode = (int)($erroCode)) {
+            $erroCode = 500;
+        }
+
+        return response()->json(['error_code' => $erroCode, 'msg' => $msg, 'data' => $data]);
+    }
+}
+
+if (!function_exists('apiError')) {
+    function apiError($erroCode = 500, $msg = 'error', $data = '')
     {
         if (!$erroCode = (int)($erroCode)) {
             $erroCode = 500;
